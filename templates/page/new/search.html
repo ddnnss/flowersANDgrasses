@@ -1,0 +1,33 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block content %}
+<div id="breadcrumb" class="clearfix">
+				<div class="container">
+					<div class="breadcrumb clearfix">
+						<ul class="ul-breadcrumb">
+							<li><a href="/" title="Home">Главная</a></li>
+							<li><span>Результаты поиска</span></li>
+						</ul>
+
+					</div>
+				</div>
+			</div><!-- end breadcrumb -->
+    <div class="section section-tabsproduct">
+					<div class="container">
+                            <div class="block-title">
+								<h4 class="title_block">Результаты поиска по запросу : {{ query }}</h4>
+
+							</div>
+						<div class="block_content">
+										<div class="row">
+                                            {% for item in all_items %}
+											<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-sp-12">
+												{% include 'pages/_item.html' %}
+											</div>
+										    {% endfor %}
+										</div><!-- end row -->
+									</div><!-- end block_content -->
+					</div><!-- end container -->
+				</div>
+    
+{% endblock %}

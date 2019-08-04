@@ -1,0 +1,390 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+			<div id="breadcrumb" class="clearfix">
+				<div class="container">
+					<div class="breadcrumb clearfix">
+						<ul class="ul-breadcrumb">
+							<li><a href="/" >Главная</a></li>
+                            <li><a href="/" >Каталог</a></li>
+							<li><a href="{% url 'cat'  item.category.name_slug  %}" >{{ item.category.name }}</a></li>
+							<li><span>{{ item.name }}</span></li>
+						</ul>
+
+					</div>
+				</div>
+			</div><!-- end breadcrumb -->
+
+			<div id="columns" class="columns-container">
+				<!-- container -->
+				<div class="container">
+					<div class="row">
+						<div class="pb-left-column col-xs-12 col-sm-12 col-md-5">
+							<div id="image-block" class="clearfix">
+								<div id="view_full_size">
+									<img src="{{ item.itemimage_set.first.image.url }}" alt="The Cottage Bouquet" class="img-responsive" width="470" height="927">
+								</div>
+							</div><!-- end #image-block -->
+							<div id="views_block" class="clearfix">
+								<div id="thumbs_list">
+									<ul id="thumbs_list_frame" class="list-inline">
+                                        {% for image in item.itemimage_set.all %}
+                                            {% if forloop.first %}
+                                                <li class="first">
+										        	<img src="{{ image.image.url }}" alt="The Cottage Bouquet" class="img-responsive" width="102" height="136">
+									        	</li>
+                                            {% elif forloop.last %}
+                                                	<li class="last">
+										            	<img src="{{ image.image.url }}" alt="The Cottage Bouquet" class="img-responsive" width="102" height="136">
+									            	</li>
+                                            {% else %}
+                                                <li>
+										        	<img src="{{ image.image.url }}" alt="The Cottage Bouquet" class="img-responsive" width="102" height="136">
+									        	</li>
+                                            {% endif %}
+                                        {% endfor %}
+
+
+									</ul>
+								</div>
+							</div><!-- end views_block -->
+						</div><!-- end pb-left-column -->
+						<div class="pb-center-column col-xs-12 col-sm-12 col-md-7">
+							<div class="pb-centercolumn">
+								<h1>{{ item.name }}</h1>
+
+								<div class="price clearfix">
+									<p class="our_price_display">
+										{{ item.price }} &#8381;
+									</p>
+
+								</div><!-- end price -->
+
+								<div id="short_description_block">
+									<p>{{ item.description | safe }}</p>
+								</div><!-- end short_description_block -->
+								  <form style="    display: inline-flex;
+    align-items: stretch;" action="{% url 'add_to_cart' %}"   method="post"
+                  onsubmit="add_to_cart(this,{{ item.id }});return false;">{% csrf_token %}
+
+                    {% if item.is_present %}
+
+
+     <a style="display: inline-block; margin-right: 5px" href="#" onclick="upClick(this)" class="btn status-enable btn-sm product_quantity_down">
+												<i class="fa fa-caret-up"></i>
+											</a>
+                            <input style="    width: 44px;
+    padding: 0 13px;margin-right: 5px" class=" cart-input" type="number" id="{{ item.id }}_items_number" min="1"  value="1" >
+                        <a style="display: inline-block;margin-right: 15px" href="#" onclick="downClick(this)" class="btn status-enable btn-sm product_quantity_down">
+												<i class="fa fa-caret-down"></i>
+											</a>
+
+
+
+
+                            <button type="submit" class="btn btn-primary" id="{{ item.id }}_submit"
+                                    data-item_id="{{ item.id }}"
+                                    data-item_name="{{ item.name }}"
+                                    data-item_price="{{ item.price }}"
+                                    data-item_image="{{ item.itemimage_set.first.image.url }}">
+                                <span class="add2cart"><i class="glyphicon glyphicon-shopping-cart"> </i> В КОРЗИНУ </span>
+                            </button>
+
+                    {% else %}
+                        <strong>НЕТ В НАЛИЧИИ</strong>
+                    {% endif %}
+
+            </form>
+
+							</div><!-- end pb-centercolumn -->
+						</div><!-- end pb-center-column -->
+
+					</div><!-- end row -->
+{#					<div class="blockproductscategory block">#}
+{#						<h4 class="title_block">Related Products</h4>#}
+{#						<div class="block_content">#}
+{#							<div class="owl-row">#}
+{#								<div class="blockproductscategory_grid owl-carousel owl-theme owl-rtl owl-responsive-1000 owl-loaded">#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#							<div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1462.5px;"><div class="owl-item active" style="width: 262.5px; margin-left: 30px;"><div class="item">#}
+{#										<div class="product-container">#}
+{#											<div class="left-block">#}
+{#												<div class="product-image-container">#}
+{#													<a class="product_img_link" href="page-detail.html" title="Tulipa floriade - red">#}
+{#														<img src="img/product/1.jpg" alt="Tulipa floriade - red" class="img-responsive image-effect" width="480" height="640">#}
+{#													</a>#}
+{#													<span class="label-new label">New</span>#}
+{#													<span class="label-sale label">Sale</span>#}
+{#													<span class="label-reduction label">-5%</span>#}
+{#												</div>#}
+{#												<div class="box-buttons">#}
+{#													<a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>#}
+{#													<a class="button btn quick-view" href="#" title="Quick view">#}
+{#														<i class="zmdi zmdi-eye"></i>#}
+{#													</a>#}
+{#													<a class="button btn addToWishlist" href="#" title="Add to my wishlist">#}
+{#														<i class="zmdi zmdi-favorite-outline"></i>#}
+{#													</a>#}
+{#													<a class="button btn add_to_compare" href="#" title="Quick view">#}
+{#														<i class="zmdi zmdi-refresh-alt"></i>#}
+{#													</a>#}
+{#												</div>#}
+{#											</div><!--end left block -->#}
+{#											<div class="right-block">#}
+{#												<div class="product-box">#}
+{#													<h5 class="name">#}
+{#														<a class="product-name" href="page-detail.html" title="Tulipa floriade - red">#}
+{#															Tulipa floriade - red#}
+{#														</a>#}
+{#													</h5>#}
+{#													<div class="content_price">#}
+{#														<span class="price product-price">$28.98</span>#}
+{#														<span class="old-price product-price">$30.51</span>#}
+{#													</div>#}
+{#													<div class="product_comments clearfix">#}
+{#														<div class="product-rating">#}
+{#															<div class="star_content">#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#															</div>#}
+{#														</div>#}
+{#													</div><!-- end product_comments -->#}
+{#												</div><!-- end product-box -->#}
+{#											</div><!--end right block -->#}
+{#										</div><!-- end product-container-->#}
+{#									</div></div><div class="owl-item active" style="width: 262.5px; margin-left: 30px;"><div class="item">#}
+{#										<div class="product-container">#}
+{#											<div class="left-block">#}
+{#												<div class="product-image-container">#}
+{#													<a class="product_img_link" href="page-detail.html" title="Queen rose - yellow">#}
+{#														<img src="img/product/2.jpg" alt="Queen rose - yellow" class="img-responsive image-no-effect" width="480" height="640">#}
+{#													</a>#}
+{#													<span class="label-new label">New</span>#}
+{#												</div>#}
+{#												<div class="box-buttons">#}
+{#													<a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>#}
+{#													<a class="button btn quick-view" href="#" title="Quick view">#}
+{#														<i class="zmdi zmdi-eye"></i>#}
+{#													</a>#}
+{#													<a class="button btn addToWishlist" href="#" title="Add to my wishlist">#}
+{#														<i class="zmdi zmdi-favorite-outline"></i>#}
+{#													</a>#}
+{#													<a class="button btn add_to_compare" href="#" title="Quick view">#}
+{#														<i class="zmdi zmdi-refresh-alt"></i>#}
+{#													</a>#}
+{#												</div>#}
+{#											</div><!--end left block -->#}
+{#											<div class="right-block">#}
+{#												<div class="product-box">#}
+{#													<h5 class="name">#}
+{#														<a class="product-name" href="page-detail.html" title="Queen rose - yellow">#}
+{#															Queen rose - yellow#}
+{#														</a>#}
+{#													</h5>#}
+{#													<div class="content_price">#}
+{#														<span class="price product-price">$98.98</span>#}
+{#													</div>#}
+{#													<div class="product_comments clearfix">#}
+{#														<div class="product-rating">#}
+{#															<div class="star_content">#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#															</div>#}
+{#														</div>#}
+{#													</div><!-- end product_comments -->#}
+{#												</div><!-- end product-box -->#}
+{#											</div><!--end right block -->#}
+{#										</div><!-- end product-container-->#}
+{#									</div></div><div class="owl-item active" style="width: 262.5px; margin-left: 30px;"><div class="item">#}
+{#										<div class="product-container">#}
+{#											<div class="left-block">#}
+{#												<div class="product-image-container">#}
+{#													<a class="product_img_link" href="page-detail.html" title="Flowers Bouquet - pink">#}
+{#														<img src="img/product/3.jpg" alt="Flowers Bouquet - pink" class="img-responsive image-effect" width="480" height="640">#}
+{#													</a>#}
+{#													<span class="label-new label">New</span>#}
+{#												</div>#}
+{#												<div class="box-buttons">#}
+{#													<a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>#}
+{#													<a class="button btn quick-view" href="#" title="Quick view">#}
+{#														<i class="zmdi zmdi-eye"></i>#}
+{#													</a>#}
+{#													<a class="button btn addToWishlist" href="#" title="Add to my wishlist">#}
+{#														<i class="zmdi zmdi-favorite-outline"></i>#}
+{#													</a>#}
+{#													<a class="button btn add_to_compare" href="#" title="Quick view">#}
+{#														<i class="zmdi zmdi-refresh-alt"></i>#}
+{#													</a>#}
+{#												</div>#}
+{#											</div><!--end left block -->#}
+{#											<div class="right-block">#}
+{#												<div class="product-box">#}
+{#													<h5 class="name">#}
+{#														<a class="product-name" href="page-detail.html" title="Flowers Bouquet - pink">#}
+{#															Flowers Bouquet - pink#}
+{#														</a>#}
+{#													</h5>#}
+{#													<div class="content_price">#}
+{#														<span class="price product-price">$68.68</span>#}
+{#													</div>#}
+{#													<div class="product_comments clearfix">#}
+{#														<div class="product-rating">#}
+{#															<div class="star_content">#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#															</div>#}
+{#														</div>#}
+{#													</div><!-- end product_comments -->#}
+{#												</div><!-- end product-box -->#}
+{#											</div><!--end right block -->#}
+{#										</div><!-- end product-container-->#}
+{#									</div></div><div class="owl-item active" style="width: 262.5px; margin-left: 30px;"><div class="item">#}
+{#										<div class="product-container">#}
+{#											<div class="left-block">#}
+{#												<div class="product-image-container">#}
+{#													<a class="product_img_link" href="page-detail.html" title="Tulipa floriade - yellow">#}
+{#														<img src="img/product/4.jpg" alt="Tulipa floriade - yellow" class="img-responsive image-effect" width="480" height="640">#}
+{#													</a>#}
+{#													<span class="label-new label">New</span>#}
+{#												</div>#}
+{#												<div class="box-buttons">#}
+{#													<a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>#}
+{#													<a class="button btn quick-view" href="#" title="Quick view">#}
+{#														<i class="zmdi zmdi-eye"></i>#}
+{#													</a>#}
+{#													<a class="button btn addToWishlist" href="#" title="Add to my wishlist">#}
+{#														<i class="zmdi zmdi-favorite-outline"></i>#}
+{#													</a>#}
+{#													<a class="button btn add_to_compare" href="#" title="Quick view">#}
+{#														<i class="zmdi zmdi-refresh-alt"></i>#}
+{#													</a>#}
+{#												</div>#}
+{#											</div><!--end left block -->#}
+{#											<div class="right-block">#}
+{#												<div class="product-box">#}
+{#													<h5 class="name">#}
+{#														<a class="product-name" href="page-detail.html" title="Tulipa floriade - yellow">#}
+{#															Tulipa floriade - yellow#}
+{#														</a>#}
+{#													</h5>#}
+{#													<div class="content_price">#}
+{#														<span class="price product-price">$56.28</span>#}
+{#													</div>#}
+{#													<div class="product_comments clearfix">#}
+{#														<div class="product-rating">#}
+{#															<div class="star_content">#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#															</div>#}
+{#														</div>#}
+{#													</div><!-- end product_comments -->#}
+{#												</div><!-- end product-box -->#}
+{#											</div><!--end right block -->#}
+{#										</div><!-- end product-container-->#}
+{#									</div></div><div class="owl-item" style="width: 262.5px; margin-left: 30px;"><div class="item">#}
+{#										<div class="product-container">#}
+{#											<div class="left-block">#}
+{#												<div class="product-image-container">#}
+{#													<a class="product_img_link" href="page-detail.html" title="Queen rose">#}
+{#														<img src="img/product/5.jpg" alt="Queen rose" class="img-responsive image-effect" width="480" height="640">#}
+{#													</a>#}
+{#													<span class="label-new label">New</span>#}
+{#												</div>#}
+{#												<div class="box-buttons">#}
+{#													<a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>#}
+{#													<a class="button btn quick-view" href="#" title="Quick view">#}
+{#														<i class="zmdi zmdi-eye"></i>#}
+{#													</a>#}
+{#													<a class="button btn addToWishlist" href="#" title="Add to my wishlist">#}
+{#														<i class="zmdi zmdi-favorite-outline"></i>#}
+{#													</a>#}
+{#													<a class="button btn add_to_compare" href="#" title="Quick view">#}
+{#														<i class="zmdi zmdi-refresh-alt"></i>#}
+{#													</a>#}
+{#												</div>#}
+{#											</div><!--end left block -->#}
+{#											<div class="right-block">#}
+{#												<div class="product-box">#}
+{#													<h5 class="name">#}
+{#														<a class="product-name" href="page-detail.html" title="Queen rose">#}
+{#															Queen rose#}
+{#														</a>#}
+{#													</h5>#}
+{#													<div class="content_price">#}
+{#														<span class="price product-price">$26.28</span>#}
+{#													</div>#}
+{#													<div class="product_comments clearfix">#}
+{#														<div class="product-rating">#}
+{#															<div class="star_content">#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#																<div class="star star_on"></div>#}
+{#															</div>#}
+{#														</div>#}
+{#													</div><!-- end product_comments -->#}
+{#												</div><!-- end product-box -->#}
+{#											</div><!--end right block -->#}
+{#										</div><!-- end product-container-->#}
+{#									</div></div></div></div><div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="">prev</div><div class="owl-next" style="">next</div></div><div class="owl-dots" style=""><div class="owl-dot active"><span></span></div><div class="owl-dot"><span></span></div></div></div></div><!-- end blockproductscategory_grid -->#}
+{#							</div><!-- end tabproduct-carousel -->#}
+{#						</div>#}
+{#					</div><!-- end blockproductscategory -->#}
+				</div> <!-- end container -->
+			</div><!--end warp-->
+
+<script>
+
+function upClick(b){
+     var $button = $(b);
+   var oldValue = $('.cart-input').val();
+
+
+	  var newVal = parseFloat(oldValue) + 1;
+
+   $('.cart-input').val(newVal);
+}
+
+function downClick(b){
+     var $button = $(b);
+  var oldValue = $('.cart-input').val();
+    console.log(oldValue)
+        if (parseFloat(oldValue) > 2){
+           var newVal = parseFloat(oldValue) - 1;
+        }else {
+             var newVal = 1
+        }
+  $('.cart-input').val(newVal);
+}
+
+
+
+</script>
+
+{% endblock %}
+
+{% block js %}
+      <script src="{% static 'js/jquery.elevatezoom.js' %}"></script>
+     <script src="{% static 'js/jquery.amaran.min.js'%}"></script>
+{% endblock %}

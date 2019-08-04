@@ -1,0 +1,152 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if not items %}
+            <title>{{ title }}</title>
+            <meta name="description" content="{{ description }}"/>
+            <meta property="og:description" content="{{ description }}"/>
+            <meta name="keywords" content= "{{ keywords }}" />
+    {% elif not page %}
+            <title>{{ title }}</title>
+            <meta name="description" content="{{ description }}"/>
+            <meta property="og:description" content="{{ description }}"/>
+            <meta name="keywords" content= "{{ keywords }}" />
+    {% if items.has_next %}
+            <link rel="next" href="https://www.lakshmi888.ru/subcategory/{{ subcat.name_slug }}/?page=2">
+    {% endif %}
+    {% else %}
+            <title>{{ title }} | Страница - {{ page }}</title>
+    {% if items.has_next %}
+            <link rel="next" href="https://www.lakshmi888.ru/subcategory/{{ subcat.name_slug }}/?page={{ page|add:'1' }}">
+    {% endif %}
+    {% if page != '2' %}
+            <link rel="prev" href="https://www.lakshmi888.ru/subcategory/{{ subcat.name_slug }}/?page={{ page|add:"-1" }}">
+    {% else %}
+             <link rel="prev" href="https://www.lakshmi888.ru/subcategory/{{ subcat.name_slug }}/">
+    {% endif %}
+    {% endif %}
+    <meta name="yandex-verification" content="627fbcd85b9f00c2" />
+    <meta name="google-site-verification" content="google20ccd67eb9a16edb">
+    <link rel="shortcut icon" href="{% static '/images/favicon.ico' %}" />
+    {% if canonical_link %}
+    <link rel="canonical" href="{{canonical_link}}"/>
+    {% endif %}
+    <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+    <link href="{% static 'css/magnific-popup.css'%}" rel="stylesheet">
+    <link href="{% static 'css/amaran.min.css'%}" rel="stylesheet">
+    <link href="{% static 'css/showLoading.css'%}" rel="stylesheet">
+    <link href="{% static 'css/icheck.css'%}" rel="stylesheet">
+    <link href="{% static 'css/style.css'%}" rel="stylesheet">
+    <link href="{% static 'css/footable-0.1.css'%}" rel="stylesheet">
+    <link href="{% static 'css/footable.sortable-0.1.css'%}" rel="stylesheet">
+    <link href="{% static 'css/custom.css'%}" rel="stylesheet">
+    <script>
+        paceOptions = {
+            elements: true
+        };
+    </script>
+    <script src="{% static 'js/pace.min.js'%}"></script>
+    <link id="pagestyle" rel="stylesheet" type="text/css" href="{% static 'css/skin-1.css'%}">
+    <!— Yandex.Metrika counter —>
+    <script type="text/javascript" >
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+    m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    ym(52425169, "init", {
+    id:52425169,
+    clickmap:true,
+    trackLinks:true,
+    accurateTrackBounce:true,
+    webvisor:true
+    });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/52425169" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!— /Yandex.Metrika counter —>
+</head>
+<body>
+    <form id="dummy_form">{% csrf_token %}</form>
+    {% include 'header.html' %}
+    {% block content %}
+    {% endblock %}
+    {% include 'footer.html' %}
+    <script type="text/javascript" src="{% static 'js/jquery-1.10.1.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/footable.js'%}"></script>
+    <script src="{% static 'js/footable.sortable.js'%}"></script>
+    {% block extrajs %}
+    {% endblock %}
+    <script src="{% static 'js/idangerous.swiper-2.1.min.js'%}"></script>
+    <script src="{% static 'js/jquery.cycle2.min.js'%}"></script>
+    <script src="{% static 'js/jquery.easing.1.3.js'%}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.parallax-1.1.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.mousewheel.min.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.mCustomScrollbar.js'%}"></script>
+    <script type="text/javascript" src="{% static 'js/icheck.min.js'%}"></script>
+    <script src="{% static 'js/jquery.matchHeight-min.js'%}"></script>
+    <script src="{% static 'js/grids.js'%}"></script>
+    <script src="{% static 'js/1owl.carousel.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+    <script src="{% static 'js/bootstrap.touchspin.js'%}"></script>
+    <script src="{% static 'js/home.js'%}"></script>
+    <script src="{% static 'js/script.js'%}"></script>
+    <script src="{% static 'js/quick_view.js'%}"></script>
+    <script src="{% static 'js/jquery.amaran.min.js'%}"></script>
+    <script src="{% static 'js/jquery.showLoading.min.js'%}"></script>
+    <script src="{% static 'js/custom.js'%}"></script>
+    <script src="{% static 'js/add_to_cart.js'%}"></script>
+    <script src="{% static 'js/delete_from_cart.js'%}"></script>
+    <script src="{% static 'js/delete_from_main_cart.js'%}"></script>
+    <script src="{% static 'js/promo.js'%}"></script>
+    <script src="{% static 'js/cart.js'%}"></script>
+    <script src="{% static 'js/sort.js'%}"></script>
+    <script src="{% static 'js/jquery.zoom.js'%}"></script>
+    <script src="{% static 'js/login.js'%}"></script>
+    <script src="{% static 'js/wishlist.js'%}"></script>
+
+ <script type="text/javascript">
+
+    $(function () {
+        var target = $("div.has-overly-shade"),
+                targetHeight = target.outerHeight();
+        $(document).scroll(function () {
+            var scrollPercent = (targetHeight - window.scrollY) / targetHeight;
+            scrollPercent >= 0 && (target.css("background-color", "rgba(0,0,0," + (1.1 - scrollPercent) + ")"))
+        })
+    });
+    $(function () {
+        if (navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/)) {
+            $('#ios-notice').removeClass('hidden');
+            $('.parallax-container').height($(window).height() * 0.5 | 0);
+        } else {
+            $(window).resize(function () {
+                var parallaxHeight = Math.max($(window).height() * 0.7, 200) | 0;
+                $('.parallax-container').height(parallaxHeight);
+            }).trigger('resize');
+        }
+    });
+    $(document).ready(function () {
+        var isMobile = function () {
+            //console.log("Navigator: " + navigator.userAgent);
+            return /(iphone|ipod|ipad|android|blackberry|windows ce|palm|symbian)/i.test(navigator.userAgent);
+        };
+
+        if (isMobile()) {
+            // For  mobile , ipad, tab
+            $('.animateme').removeClass('animateme');
+            $('.if-is-mobile').addClass('ismobile');
+
+        } else {
+        }
+
+    });
+
+
+
+</script>
+</body>
+</html>

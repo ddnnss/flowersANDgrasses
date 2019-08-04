@@ -1,0 +1,369 @@
+{% load static %}
+{% if not request.user.is_authenticated %}
+    <div class="modal signUpContent fade" id="ModalLogin" tabindex="-1" role="dialog">
+        <div class="modal-dialog ">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                    <h3 class="modal-title-site text-center"> ВХОД </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="control-group "><p class="text-center">
+                        <strong>
+                            Изменился только дизайн сайта! Заходите под вашим логином и паролем!
+                        </strong>
+                    </p></div>
+                    <form onsubmit="return false;">
+                        <div class="form-group login-username">
+                            <div>
+                                <input name="log" id="login-email"  required="required" class="form-control input" size="20"
+                                       placeholder="Адрес E-MAIL" type="email">
+                            </div>
+                        </div>
+                        <div class="form-group login-password">
+                            <div>
+                                <input name="Password" id="login-password"  required="required" class="form-control input" size="20"
+                                       placeholder="Пароль" type="password">
+                            </div>
+                        </div>
+                        <div   id="errorlogin" style="color: red; margin-bottom: 5px;"></div>
+                        <div>
+                            <div>
+                                <input name="submit" class="btn  btn-block btn-lg btn-primary" value="ОТПРАВИТЬ" type="submit"  onclick="login()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn  btn-lg btn-default" style="font-size: 15px;" data-toggle="modal" data-dismiss="modal" href="#ModalSignup">Нет аккаунта? Создать новый </a>
+                    <a class="btn   btn-lg btn-default" style="font-size: 15px;" data-toggle="modal" data-dismiss="modal" href="#ModalLostPass">Забыли пароль?  </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal signUpContent fade" id="ModalSignup" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                    <h3 class="modal-title-site text-center"> РЕГИСТРАЦИЯ </h3>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="return false;">
+                        <div class="form-group reg-email">
+                            <div>
+                                <input id="reg_email" class="form-control " size="20" required="required"   placeholder="Введите адрес E-MAIL" type="email">
+                            </div>
+                            <div id="erroremail" style="color:red;margin-bottom: 5px;"> </div>
+                        </div>
+                        <div class="form-group reg_name">
+                            <div>
+                                <input id="reg_name" class="form-control " size="20" required="required"  placeholder="Введите Ваше имя" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group reg_phone">
+                            <div>
+                                <input id="reg_phone" class="form-control " size="20"  required="required"  placeholder="Введите Ваш телефон" type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-group reg-password">
+                            <div>
+                                <input id="reg_pass1" class="form-control " size="20"  required="required" placeholder="Введите пароль"
+                                       type="password">
+                            </div>
+                        </div>
+                        <div class="form-group reg-password">
+                            <div>
+                                <input id="reg_pass2"  class="form-control " size="20"  required="required"   placeholder="Повторите пароль"
+                                       type="password">
+                            </div>
+                        </div>
+                        <div id="errorpass" style="color:red;margin-bottom: 5px;"> </div>
+                        <div class="form-group ">
+                            <div class="icheckbox_square-green iCheck-margin" style="position: relative;">
+                                <input type="checkbox" value="1" name="newsletter" required="required" style="position: absolute; opacity: 0;">
+                            </div>
+                            <label style="font-weight: normal;" for="newsletter">Вы даете согласие на обработку Ваших персональных данных?</label>
+                        </div>
+                        <div class="form-group login-password">
+                            <img id="reg_n1" data-n1="{{ num1 }}" style="pointer-events: none;" src="/static/images/capthca/{{ num1 }}.png">
+                            <img style="pointer-events: none;" src="/static/images/capthca/plus.png">
+                            <img id="reg_n2" data-n2="{{ num2 }}"style="pointer-events: none;" src="/static/images/capthca/{{ num2 }}.png">
+                            <img style="pointer-events: none;" src="/static/images/capthca/eqal.png">
+                            <input id="reg_answer" style="    border-color: #DDDDDD;
+                                            -webkit-border-radius: 3px;
+                                            -moz-border-radius: 3px;
+                                            border-radius: 3px;
+                                            border-style: solid;
+                                            border-width: 1px;
+                                            color: #888888;
+                                            font-size: 14px;
+                                            width: 40px;
+                                            margin-bottom: 10px;
+                                            height: 38px;" type="text"  placeholder="ответ" required="required">
+                            <div id="errorother" style="color:red;margin-bottom: 5px;"></div>
+                        </div>
+                        <div>
+                            <div>
+                                <input name="submit" class="btn  btn-block btn-lg btn-primary" value="РЕГИСТРАЦИЯ" type="submit" onclick="signup()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal signUpContent fade" id="ModalLostPass" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                    <h3 class="modal-title-site text-center"> ВОССТАНОВЛЕНИЕ ДОСТУПА </h3>
+                </div>
+                <div class="modal-body">
+                    <div class="control-group "><p class="text-center">
+                        <strong>
+                            В данный момент наблюдаются проблемы с рассылкой писем
+                            на <span class="site-color">@Mail.ru, @bk.ru, @inbox.ru, @list.ru</span>  из-за блокировок РосКомНадзора! Если у вас данная почта - то свяжитесь с нами по телефону!
+                        </strong>
+                    </p></div>
+                    <form onsubmit="return false;">
+                        <div class="form-group reg-email">
+                            <div>
+                                <input id="restore-email" class="form-control input" size="20" required="required"  placeholder="Введите адрес E-MAIL" type="email">
+                            </div>
+                        </div>
+                        <div id="errorrestore" style="color:red;margin-bottom: 5px;"> </div>
+                        <div id="okrestore" style="color:green;margin-bottom: 5px;">  </div>
+                        <div>
+                            <div>
+                                <input name="submit" id="restore_btn" class="btn  btn-block btn-lg btn-primary" value="СОЗДАТЬ НОВЫЙ ПАРОЛЬ" type="submit" onclick="restore()">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+<div class="navbar navbar-tshop navbar-fixed-top megamenu" role="navigation">
+    <div class="navbar-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6">
+                    <div class="pull-left ">
+                        <ul class="userMenu ">
+                            <li class="phone-number">
+                                <a href="tel:+74959263359" rel="nofollow">
+                                    <span> <i class="glyphicon glyphicon-phone-alt "></i></span>
+                                    <span class="hidden-xs" style="margin-left:5px"> +7(495) 926-33-59 </span> </a>
+                            </li>
+                            <li class="phone-number">
+                                <a href="tel:+79646477676" rel="nofollow">
+                                    <span> <i class="fa fa-whatsapp" aria-hidden="true"></i></span>
+                                    <span class="hidden-xs" style="margin-left:5px"> +7(964) 647-76-76 </span> </a>
+                            </li>
+                            <li class="phone-number">
+                                <a href="mailto:info@lakshmi888.ru" rel="nofollow">
+                                    <span> <i class="fa fa-envelope-o" aria-hidden="true"></i></span>
+                                    <span class="hidden-xs" style="margin-left:5px"> info@lakshmi888.ru </span> </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-6 col-xs-6 col-md-6 no-margin no-padding">
+                    <div class="pull-right">
+                        <ul class="userMenu">
+                            {% if request.user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'account' %}"><span class="hidden-xs"> ЛИЧНЫЙ КАБИНЕТ</span> <i
+                                            class="glyphicon glyphicon-user hide visible-xs "></i></a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'logout' %}" > <span class="hidden-xs">ВЫХОД</span></a>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="#" data-toggle="modal" data-target="#ModalLogin"> <span class="hidden-xs">
+                                ВХОД / РЕГИСТРАЦИЯ</span><i class="glyphicon glyphicon-log-in hide visible-xs "></i></a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w100 brandWrap">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span
+                        class="sr-only"> Toggle navigation </span> <span class="icon-bar"> </span> <span
+                        class="icon-bar"> </span> <span class="icon-bar"> </span></button>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-cart"><i
+                        class="fa fa-shopping-cart colorWhite"> </i> <span class="cartRespons colorWhite">КОРЗИНА (<span class="cart_total_lg">{% if not total_cart_price  %}0{% else %}{{ total_cart_price }}{% endif %} </span> &#8381;) </span>
+                </button>
+                <a style="padding: 0px !important;" class="navbar-brand " href="/"> <img style="width: 270px; padding: 5px;" src="{% static 'images/logo_bw.png' %}" alt="Интернет магазин фен-шуй товаров в Москве "> </a>
+
+                <div class="search-box pull-right hidden-lg hidden-md hidden-sm">
+                    <div class="input-group">
+                        <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="nav navbar-nav navbar-right margin-top-10 hidden-xs">
+                <ul class="social-icon">
+                    <li >
+                        <a href="https://www.instagram.com/lakshmi.888/" target="_blank" rel="nofollow">
+                            <span><i class="fa fa-instagram" aria-hidden="true"></i></span> </a>
+                    </li>
+                    <li >
+                        <a href="https://vk.com/lakshmi_888" target="_blank" rel="nofollow">
+                            <span><i class="fa fa-vk" aria-hidden="true"></i></span></a>
+                    </li>
+                    <li >
+                        <a href="#" rel="nofollow">
+                            <span> <i class="fa fa-facebook" aria-hidden="true"></i></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="w100 menuWrap">
+        <div class="container">
+            <div class="navbar-cart  collapse">
+                <div class="cartMenu  col-lg-4 col-xs-12 col-md-4 ">
+                    <div class="w100 miniCartTable scroll-pane">
+                        <table class="cart_table_lg">
+                            <tbody >
+                            {% for cart_item in all_items_in_cart %}
+                                <tr class="miniCartProduct">
+                                    <td style="width:20%" class="miniCartProductThumb">
+                                        <div>
+                                            <a href="#"> <img src="{{ cart_item.item.itemimage_set.first.image_small }}" alt="img"> </a>
+                                        </div>
+                                    </td>
+                                    <td style="width:40%">
+                                        <div class="miniCartDescription">
+                                            <h4><a href=""> {{ cart_item.item.name }}</a></h4>
+                                            <div class="price"><span> {{ cart_item.current_price}} &#8381;</span></div>
+                                        </div>
+                                    </td>
+                                    <td style="width:10%" class="miniCartQuantity"><a> X {{ cart_item.number }} </a></td>
+                                    <td style="width:15%" class="miniCartSubtotal"><span> {{ cart_item.total_price }} &#8381;</span></td>
+                                    <td style="width:5%" class="delete"><a data-item_id="{{  cart_item.item.id }}" onclick="delete_from_cart(this);return false;"> x </a></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% if count_items_in_cart > 0 %}
+                        <div  class="cart_footer_lg miniCartFooter text-right">
+                            <h3 class="text-right subtotal"> ИТОГО: {{ total_cart_price }} &#8381; </h3>
+                            <a class="btn btn-sm btn-danger" href="{% url 'show_cart' %}"> <i class="fa fa-shopping-cart"> </i> ПРОСМОТР КОРЗИНЫ</a>
+                            <a class="btn btn-sm btn-primary" href="{% url 'checkout' %}"> ОПЛАТА</a>
+                        </div>
+                    {% else %}
+                        <div class="cart_footer_lg miniCartFooter text-right">
+                            <h3 class="text-right subtotal"> КОРЗИНА ПУСТА </h3>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="/"> ГЛАВНАЯ </a></li>
+                    <li class="dropdown megamenu-fullwidth"><a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        КАТАЛОГ <b class="caret"> </b> </a>
+                        <ul class="dropdown-menu">
+                            <li class="megamenu-content ProductDetailsList">
+                                <h3 class="promo-1 no-margin hidden-xs">ВЕСЬ АССОРТИМЕНТ НАШИХ ТОВАРОВ </h3>
+                                <h3 class="promo-1sub hidden-xs"></h3>
+                                {% for cat in all_cat %}
+                                    <ul class="col-lg-3  col-sm-3 col-md-3 unstyled">
+                                        <li style="font-size: 16px;" class="no-border">
+                                            <p><strong>{{ cat.name }} </strong></p>
+                                        </li>
+                                        {% for sub_cat in cat.subcategory_set.all %}
+                                            <li>
+                                                <a style="font-size: 16px;" href="{% url 'subcategory' sub_cat.name_slug  %}"> {{ sub_cat.name }} </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endfor %}
+                            </li>
+                        </ul>
+                    </li>
+                    <li class=""><a href="{% url 'new' %}"> НОВИНКИ </a></li>
+                    <li class=""><a href="{% url 'about_us' %}"> О НАС </a></li>
+                    <li class=""><a href="{% url 'contacts' %}"> КОНТАКТЫ </a></li>
+                    <li class=""><a href="{% url 'dostavka' %}"> ДОСТАВКА </a></li>
+                </ul>
+                <div class="nav navbar-nav navbar-right hidden-xs">
+                    <div class="dropdown  cartMenu "><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i
+                            class="fa fa-shopping-cart"> </i><span class="cartRespons"> КОРЗИНА (<span class="cart_total_lg">{% if not total_cart_price  %}0{% else %}{{ total_cart_price }}{% endif %} </span> &#8381;) </span>
+                        <b class="caret"> </b> </a>
+                        <div class="dropdown-menu col-lg-4 col-xs-12 col-md-4 ">
+                            <div class="w100 miniCartTable scroll-pane">
+                                <table class="cart_table_lg">
+                                    <tbody >
+                                    {% for cart_item in all_items_in_cart %}
+                                        <tr class="miniCartProduct">
+                                            <td style="width:20%" class="miniCartProductThumb">
+                                                <div>
+                                                    <a href="#"> <img src="{{ cart_item.item.itemimage_set.first.image_small }}" alt="img"> </a>
+                                                </div>
+                                            </td>
+                                            <td style="width:40%">
+                                                <div class="miniCartDescription">
+                                                    <h4><a href=""> {{ cart_item.item.name }}</a></h4>
+                                                    <div class="price"><span> {{ cart_item.current_price}} &#8381;</span></div>
+                                                </div>
+                                            </td>
+                                            <td style="width:10%" class="miniCartQuantity"><a> X {{ cart_item.number }} </a></td>
+                                            <td style="width:15%" class="miniCartSubtotal"><span> {{ cart_item.total_price }} &#8381;</span></td>
+                                            <td style="width:5%" class="delete"><a data-item_id="{{  cart_item.item.id }}" onclick="delete_from_cart(this);return false;"> x </a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% if count_items_in_cart > 0 %}
+                                <div class="cart_footer_lg miniCartFooter text-right">
+                                    <h3 class="text-right subtotal"> ИТОГО: {{ total_cart_price }} &#8381; </h3>
+                                    <a class="btn  btn-danger" href="{% url 'show_cart' %}"> <i class="fa fa-shopping-cart"> </i> ПРОСМОТР КОРЗИНЫ</a>
+                                    <a class="btn  btn-primary" href="{% url 'checkout' %}"> ОПЛАТА</a>
+                                </div>
+                            {% else %}
+                                <div class="cart_footer_lg miniCartFooter text-right">
+                                    <h3 class="text-right subtotal"> КОРЗИНА ПУСТА </h3>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="search-box">
+                        <div class="input-group">
+                            <button class="btn btn-nobg getFullSearch" type="button"><i class="fa fa-search"> </i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="search-full text-right"><a class="pull-right search-close"> <i class=" fa fa-times-circle"> </i> </a>
+            <div class="searchInputBox pull-right">
+                <form action="{% url 'search' %}" method="get">
+                    <input type="search" data-searchurl="search?=" name="search"
+                           placeholder="Введите часть названия товара или артикул..." class="search-input">
+                    <button  class="btn-nobg search-btn" type="submit"><i class="fa fa-search"> </i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="search-menu-bar">
+        {#                                    <form action="{% url 'search' %}" method="get">#}
+        {#                                        <input class="seach-input input--sm form-full" id="seach_input" name="search" placeholder="Please Enter Keywords" type="search">#}
+        {#                                    </form>#}
+    </div>
+</div>
+<hr>

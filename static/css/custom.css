@@ -1,0 +1,139 @@
+
+.cart_item_number{
+  width: 10%;
+
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="cart_item_number"] {
+    width: 20%;
+  }
+}
+
+.btn-outline {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+  padding: 5px 15px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* Green */
+.success-outline {
+  border-color: #4CAF50;
+  color: green;
+}
+
+.success-outline:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Blue */
+.info-outline {
+  border-color: #2196F3;
+  color: dodgerblue
+}
+
+.info-outline:hover {
+  background: #2196F3;
+  color: white;
+}
+
+/* Orange */
+.warning-outline {
+  border-color: #ff9800;
+  color: orange;
+}
+
+.warning-outline:hover {
+  background: #ff9800;
+  color: white;
+}
+
+/* Red */
+.danger-outline {
+  border-color: #F17370;
+  color: #F17370;
+}
+
+.danger-outline:hover {
+  background: #F17370;
+  color: white;
+}
+
+/* Gray */
+.default-outline {
+  border-color: #e7e7e7;
+  color: black;
+}
+
+.default-outline:hover {
+  background: #e7e7e7;
+}
+.errorlist{
+      background: #ff3a72;
+    padding: 10px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.search-menu-bar, .cart-menu-bar {
+    width: 300px;
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #fff;
+    padding: 25px;
+    visibility: hidden;
+    opacity: 0;
+    box-shadow: 0 0 30px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 0 30px rgba(0,0,0,.1);
+    -webkit-box-shadow: 0 0 30px rgba(0,0,0,.1);
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    z-index: 0;
+    transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    -webkit-transition: all .3s ease-out;
+}
+
+    .search-menu-bar.search-menu-open, .cart-menu-bar.cart-menu-open {
+        opacity: 1;
+        visibility: visible;
+        display: block;
+    }
+
+    .search-menu-bar .container, .cart-menu-bar .container {
+        position: relative;
+        transform: translateX(-50%);
+        -moz-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        top: 50%;
+    }
+
+.home_feature_image{
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+    color: #454545 !important;
+}
+
+.pagination li.active a{
+    color: #fff !important;
+}
+
+.info-ul{
+    list-style: disc !important;
+}
