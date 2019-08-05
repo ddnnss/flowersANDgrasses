@@ -538,7 +538,7 @@ def collection(request, collection_slug):
     except EmptyPage:
         items = items_paginator.page(items_paginator.num_pages)
     show_tags = False
-    return render(request, 'page/collection.html', locals())
+    return render(request, 'page/new/collection.html', locals())
 
 
 def search(request):

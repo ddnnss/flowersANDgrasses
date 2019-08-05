@@ -1,8 +1,9 @@
 function change_cart(obj) {
  //   console.log($(obj).val());
  //   console.log($(obj).data('item_in_cart_id'));
-    jQuery('#cart_content').showLoading();
-    jQuery('#cart_sidebar').showLoading();
+ //   jQuery('#cart_content').showLoading();
+  //  jQuery('#cart_sidebar').showLoading();
+    console.log('change cart');
     var item_id = $(obj).data('item_in_cart_id');
     var item_number = $(obj).val();
     if (parseInt(item_number) > 0){

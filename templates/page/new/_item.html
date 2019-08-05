@@ -5,7 +5,7 @@
 																<img  alt="Tulipa floriade - red" class="img-responsive" width="480" height="640"
                                                                            {% for image in item.itemimage_set.all %}
                                                                                 {% if image.is_main %}
-                                                                                   src="{{ image.image_small.url }}"
+                                                                                   src="{{ image.image.url }}"
                                                                                 {% endif %}
                                                                             {% endfor %} >
 															</a>
@@ -13,17 +13,27 @@
 {#															<span class="label-sale label">Sale</span>#}
 {#															<span class="label-reduction label">-5%</span>#}
 														</div>
-														<div style="    display: flex;
-                                                                    justify-content: space-between;
-                                                                    width: 88px;
-                                                                    top: 75%;" class="box-buttons">
-																<a class="ajax_add_to_cart_button button btn" href="#" rel="nofollow" title="Add to cart"><i class="zmdi zmdi-shopping-cart"></i></a>
+														<div class="box-buttons">
+																<a class="ajax_add_to_cart_button button btn" href="javascript:void(0)"
+                                                                   id="{{ item.id }}_submit"
+                                                                    data-item_id="{{ item.id }}"
+                                                                    data-item_name="{{ item.name }}"
+                                                                    data-item_price="{{ item.price }}"
+
+                                                                    data-item_image="{{ item.itemimage_set.first.image.url }}"
+                                                                    onclick="quick_add_to_cart(this)"  rel="nofollow" title="В корзину"><i class="zmdi zmdi-shopping-cart"></i></a>
 {#																<a class="button btn quick-view" href="#" title="Quick view">#}
 {#																	<i class="zmdi zmdi-eye"></i>#}
 {#																</a>#}
-																<a class="button btn addToWishlist" href="#" title="Add to my wishlist">
-																	<i class="zmdi zmdi-favorite-outline"></i>
-																</a>
+                                                             {% if item.id in wishlist_ids %}
+                                                                <a onclick="return false;" data-placement="left" data-original-title="Add to Wishlist" data-toggle="tooltip" class="button btn addToWishlist">
+                                                                    <i class="zmdi zmdi-favorite"></i>
+                                                                </a>
+                                                            {% else %}
+                                                                <a onclick="wishlist_add({{ item.id }});return false;" data-placement="left" data-original-title="В закладки" data-toggle="tooltip" class="button btn addToWishlist">
+                                                                   <i class="zmdi zmdi-favorite-outline"></i>
+                                                                </a>
+                                                            {% endif %}
 {#																<a class="button btn add_to_compare" href="#" title="Quick view">#}
 {#																	<i class="zmdi zmdi-refresh-alt"></i>#}
 {#																</a>#}
@@ -32,7 +42,7 @@
 													<div class="right-block">
 														<div class="product-box">
 															<h5 class="name">
-																<a class="product-name" href="page-detail.html" title="Tulipa floriade - red">
+																<a class="product-name" href="{% url 'product' item.name_slug %}" title="{{ item.name }}">
 																	{{ item.name }}
 																</a>
 															</h5>
@@ -54,3 +64,4 @@
 														</div><!-- end product-box -->
 													</div><!--end right block -->
 												</div><!-- end product-container-->
+

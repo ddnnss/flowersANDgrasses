@@ -15,7 +15,7 @@ def format_number(num):
 
 def show_cart(request):
 
-    return render(request, 'cart/cart.html', locals())
+    return render(request, 'page/new/cart.html', locals())
 
 def wishlist_delete(request):
     return_dict = {}
@@ -89,7 +89,7 @@ def add_to_cart(request):
         item_dict['price'] = item.current_price
         item_dict['total_price'] = item.total_price
         item_dict['number'] = item.number
-        item_dict['image'] = item.item.itemimage_set.first().image_small
+        item_dict['image'] = item.item.itemimage_set.first().image.url
         return_dict['all_items'].append(item_dict)
 
     return_dict['total_cart_price'] = total_cart_price
@@ -99,6 +99,7 @@ def add_to_cart(request):
 def delete_from_cart(request):
     return_dict = {}
     data = request.POST
+    print(data)
     s_key = request.session.session_key
     item_id = int(data.get('item_id'))
 
@@ -127,7 +128,7 @@ def delete_from_cart(request):
         item_dict['price'] = item.current_price
         item_dict['total_price'] = item.total_price
         item_dict['number'] = item.number
-        item_dict['image'] = item.item.itemimage_set.first().image_small
+        item_dict['image'] = item.item.itemimage_set.first().image.url
         return_dict['all_items'].append(item_dict)
 
     return_dict['total_cart_price'] = total_cart_price
@@ -175,15 +176,15 @@ def update_cart(request):
         item_dict = dict()
         item_dict['id'] = item.id
         item_dict['name'] = item.item.name
-        item_dict['subcategory'] = item.item.subcategory.name
-        item_dict['subcategory_slug'] = item.item.subcategory.name_slug
+        # item_dict['subcategory'] = item.item.subcategory.name
+        # item_dict['subcategory_slug'] = item.item.subcategory.name_slug
         item_dict['name_slug'] = item.item.name_slug
         item_dict['price'] = item.current_price
         item_dict['total_price'] = item.total_price
         item_dict['number'] = item.number
         item_dict['discount'] = item.item.discount
 
-        item_dict['image'] = item.item.itemimage_set.first().image_small
+        item_dict['image'] = item.item.itemimage_set.first().image.url
         return_dict['all_items'].append(item_dict)
     total_cart_price_with_discount = total_cart_price
     if used_promo:
@@ -247,15 +248,15 @@ def delete_from_main_cart(request):
         item_dict = dict()
         item_dict['id'] = item.id
         item_dict['name'] = item.item.name
-        item_dict['subcategory'] = item.item.subcategory.name
-        item_dict['subcategory_slug'] = item.item.subcategory.name_slug
+        # item_dict['subcategory'] = item.item.subcategory.name
+        # item_dict['subcategory_slug'] = item.item.subcategory.name_slug
         item_dict['name_slug'] = item.item.name_slug
         item_dict['price'] = item.current_price
         item_dict['total_price'] = item.total_price
         item_dict['number'] = item.number
         item_dict['discount'] = item.item.discount
 
-        item_dict['image'] = item.item.itemimage_set.first().image_small
+        item_dict['image'] = item.item.itemimage_set.first().image.url
         return_dict['all_items'].append(item_dict)
 
     return_dict['total_cart_price'] = total_cart_price

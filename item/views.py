@@ -36,15 +36,15 @@ def item_page(request, item_slug):
         item = Item.objects.get(name_slug=item_slug)
         item.views += 1
         item.save(force_update=True)
-        recomended = Item.objects.filter(subcategory_id=item.subcategory_id).order_by('-views')[:12]
+        #recomended = Item.objects.filter(subcategory_id=item.subcategory_id).order_by('-views')[:12]
         # title = item.name
         # description = item.description
 
-        print(recomended)
+       # print(recomended)
     except:
         raise Http404
         # return render(request, '404.html', locals())
     title = '{} | артикул {} - купить оптом в Москве'.format(item.name, item.article)
     description = 'Заказывайте оптом {} (артикул {}) в интернет-магазине ЛАКШМИ.' \
                   ' Большой выбор товаров на различную тематику по доступным ценам. Доставка по России.'.format(item.name, item.article)
-    return render(request, 'item/item.html', locals())
+    return render(request, 'page/new/item.html', locals())

@@ -19,34 +19,46 @@ function delete_from_cart(del){
                 $('.cart_table_lg').empty();
                 if (data.all_items.length > 0) {
                      $.each(data.all_items,function (k,v) {
-                    $('.cart_table_lg').append('<tr class="miniCartProduct">\n' +
-                        '                                    <td style="width:20%" class="miniCartProductThumb">\n' +
-                        '                                        <div><a href="product-details.html"> <img src="'+ v.image +'" alt="img">\n' +
-                        '                                        </a></div>\n' +
-                        '                                    </td>\n' +
-                        '                                    <td style="width:40%">\n' +
-                        '                                        <div class="miniCartDescription">\n' +
-                        '                                            <h4><a href="product-details.html">'+ v.name +'</a></h4>\n' +
-                        '                                            <div class="price"><span> '+ v.price +' &#8381;</span></div>\n' +
-                        '                                        </div>\n' +
-                        '                                    </td>\n' +
-                        '                                    <td style="width:10%" class="miniCartQuantity"><a> X '+ v.number+' </a></td>\n' +
-                        '                                    <td style="width:15%" class="miniCartSubtotal"><span> '+ v.total_price +' &#8381;</span></td>\n' +
-                        '                                    <td style="width:5%" class="delete"><a data-item_id="'+ v.id +'" onclick="delete_from_cart(this);return false;"> x </a></td>\n' +
-                        '                                </tr>');
-                        });
-                    $('.cart_total_lg').html(data.total_cart_price);
-                    $('.cart_footer_lg').html('');
-                    $('.cart_footer_lg').append(' <h3 class="text-right subtotal"> ИТОГО: '+ data.total_cart_price +' &#8381; </h3>\n' +
-                    '                            <a class="btn  btn-danger" href="/cart"> <i class="fa fa-shopping-cart"> </i> ПРОСМОТР КОРЗИНЫ</a><a\n' +
-                    '                                class="btn  btn-primary"> ОПЛАТА</a>');
+                    $('.cart_table_lg').append('     \t<tr>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="product-thumbnail">\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="page-detail.html">\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<img width="80" height="107" alt="" class="img-responsive" src="'+ v.image +'">\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="product-name">\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a href="page-detail.html">'+ v.name +'</a>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<br><span class="amount"><strong>'+ v.number+' X '+ v.price +' &#8381; = '+ v.total_price +' &#8381;</strong></span>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="product-actions">\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<a data-item_id="'+ v.id +'" class="remove" onclick="delete_from_cart(this);return false;"> <i class="fa fa-times"></i> </a></td>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<i class="fa fa-times"></i>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</a>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+                        '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>');
+
+
+                });
+                $('.ajax_cart_quantity').html(data.total_items_in_cart);
+                console.log(data.total_items_in_cart)
+                // $('.cart_footer_lg').html('');
+                $('.cart_table_lg').append('<tr>\n' +
+                    '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<td class="actions" colspan="3">\n' +
+                    '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t<div class="actions-continue">\n' +
+                    '                                                                          <a style="color: #FFFFFF !important;" class="btn btn-default" href="/cart/"> <i class="fa fa-shopping-cart"> </i> ПРОСМОТР КОРЗИНЫ</a>\n' +
+                    '                                                                          <a style="color: #FFFFFF !important;" class="btn pull-right btn-primary" href="/checkout/"> ОПЛАТА</a>\n' +
+                    '\n' +
+                    '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</div>\n' +
+                    '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</td>\n' +
+                    '\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t</tr>')
                 }
                 else
                 {
-                    $('.cart_total_lg').html('0');
-                    $('.cart_footer_lg').html('');
-                    $('.cart_footer_lg').append('<h3 class="text-right subtotal"> КОРЗИНА ПУСТА </h3>');
-                    $('#checkout_btn').attr('disabled','disabled');
+                    $('.cart_table_lg').append(' <tr>\n' +
+                        '                                                               <td>\n' +
+                        '                                                                   Корзина пуста\n' +
+                        '                                                               </td>\n' +
+                        '                                                               </tr>');
+                     $('.ajax_cart_quantity').html('0');
                 }
             },
             error: function () {

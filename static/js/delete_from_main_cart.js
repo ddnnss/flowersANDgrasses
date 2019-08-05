@@ -1,7 +1,7 @@
 function delete_from_main_cart(i_id) {
     console.log(i_id);
-     jQuery('#cart_content').showLoading();
-     jQuery('#cart_sidebar').showLoading();
+      jQuery('#cart_content').showLoading();
+     //jQuery('#cart_sidebar').showLoading();
 
     var item_id = i_id;
 
