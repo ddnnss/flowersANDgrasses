@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 
-    <div>
+    {% if total_cart_price %}
     <div id="breadcrumb" class="clearfix">
         <div class="container">
             <div class="breadcrumb clearfix">
@@ -25,6 +25,7 @@
 									<th class="cart_delete last_item">&nbsp;</th>
 									<th class="cart_product first_item">#</th>
 									<th class="cart_description item">Название</th>
+                                    <th class="cart_unit item text-right">Скидка</th>
 									<th class="cart_unit item text-right">Цена за ед.</th>
 									<th class="cart_quantity item text-center">Кол-во</th>
 									<th class="cart_total item text-right">Всего</th>
@@ -46,6 +47,9 @@
 									<td class="cart_description">
 										<a href="{% url 'product' cart_item.item.name_slug %}">{{ cart_item.item.name }}</a>
 									</td>
+                                    <td class="cart_unit text-right">
+										<span class="amount">{{ cart_item.item.discount }} %</span>
+									</td>
 									<td class="cart_unit text-right">
 										<span class="amount">{{ cart_item.current_price}} &#8381;</span>
 									</td>
@@ -65,22 +69,22 @@
 
 							</tbody>
 							<tfoot>
-								<tr>
-									<td rowspan="3" colspan="3"></td>
-									<td colspan="2" class="text-right">Total products</td>
-									<td colspan="1" class="price text-right" id="total_product">$897</td>
-								</tr>
-								<tr class="cart_total_delivery">
-									<td colspan="2" class="text-right">Total shipping</td>
-									<td colspan="1" class="price text-right" id="total_shipping">$7.00</td>
-								</tr>
+{#								<tr>#}
+{#									<td rowspan="3" colspan="3"></td>#}
+{#									<td colspan="2" class="text-right">Итого</td>#}
+{#									<td colspan="1" class="price text-right" id="total_product">{{ cart_item.total_price }} &#8381;</td>#}
+{#								</tr>#}
+{#								<tr class="cart_total_delivery">#}
+{#									<td colspan="2" class="text-right">Total shipping</td>#}
+{#									<td colspan="1" class="price text-right" id="total_shipping">$7.00</td>#}
+{#								</tr>#}
 								<tr class="cart_total_price">
-									<td colspan="2" class="total_price_container text-right">
-										<span>Total</span>
+									<td  colspan="6" class="total_price_container text-right">
+										<span>Итого</span>
 										<div class="hookDisplayProductPriceBlock-price"></div>
 									</td>
-									<td colspan="1" class="price text-right" id="total_price_container">
-										<span id="total_price">$904</span>
+									<td colspan="2" class="price text-right" id="total_price_container">
+										<span id="total_price">{{ total_cart_price }} &#8381;</span>
 									</td>
 								</tr>
 							</tfoot>
@@ -94,10 +98,15 @@
 					</div><!-- end cart_navigation -->
 				</div> <!-- end container -->
 			</div>
+    {% else %}
+
+         {% include 'page/empty_cart.html' %}
+
+    {% endif %}
 
 
 
-</div>
+
 
     <script>
 

@@ -21,6 +21,8 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('category/<cat_slug>/', views.category, name='category'),
+    path('login/', views.login, name='login'),
+    path('registration/', views.registration, name='registration'),
     # path('subcategory/<subcat_slug>/', views.subcategory, name='subcategory'),
     path('collection/<collection_slug>/', views.collection, name='collection'),
     path('search/', views.search, name='search'),
@@ -29,6 +31,7 @@ urlpatterns = [
     # path('dostavka/', views.dostavka, name='dostavka'),
     path('new/', views.new, name='new'),
     path('checkout/', views.checkout, name='checkout'),
+    path('catalog/', views.catalog, name='catalog'),
     # path('check_email/', views.check_email, name='check_email'),
     # path('order/<order_code>', views.order, name='order'),
     # path('robots.txt', views.robots, name='robots'),

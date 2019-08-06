@@ -11,7 +11,11 @@ from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.http import Http404
 
+def login(request):
+    return render(request, 'page/new/login.html', locals())
 
+def registration(request):
+    return render(request, 'page/new/registration.html', locals())
 
 def create_password():
     from random import choices
@@ -177,7 +181,9 @@ def new(request):
     show_tags = False
     return render(request, 'page/new.html', locals())
 
-
+def catalog(request):
+    all_category = Category.objects.all()
+    return render(request, 'page/new/catalog.html', locals())
 
 
 def checkout(request):
@@ -541,27 +547,35 @@ def collection(request, collection_slug):
     return render(request, 'page/new/collection.html', locals())
 
 
-def search(request):
-    show_tags = False
-    search_string = request.GET.get('search')
-    page = request.GET.get('page')
-    param_search = search_string
-    try:
-        items = Item.objects.filter(name_lower__contains=search_string.lower(), is_active=True)
-    except:
-        return render(request, '404.html', locals())
-    if not items:
-        items = Item.objects.filter(name_lower__contains=search_string.lower()[:-1], is_active=True)
-    if not items:
-        items = Item.objects.filter(article__contains=search_string)
-    items_paginator = Paginator(items, 12)
-    try:
-        items = items_paginator.get_page(page)
-    except PageNotAnInteger:
-        items = items_paginator.page(1)
-    except EmptyPage:
-        items = items_paginator.page(items_paginator.num_pages)
+# def search(request):
+#     show_tags = False
+#     search_string = request.GET.get('search')
+#     page = request.GET.get('page')
+#     param_search = search_string
+#     try:
+#         items = Item.objects.filter(name_lower__contains=search_string.lower(), is_active=True)
+#     except:
+#         return render(request, '404.html', locals())
+#     if not items:
+#         items = Item.objects.filter(name_lower__contains=search_string.lower()[:-1], is_active=True)
+#     if not items:
+#         items = Item.objects.filter(article__contains=search_string)
+#     items_paginator = Paginator(items, 12)
+#     try:
+#         items = items_paginator.get_page(page)
+#     except PageNotAnInteger:
+#         items = items_paginator.page(1)
+#     except EmptyPage:
+#         items = items_paginator.page(items_paginator.num_pages)
+#
+#     return render(request, 'page/new/search.html', locals())
 
+def search(request):
+    query = request.GET.get('q')
+    try:
+        all_items = Item.objects.filter(name_lower__contains=query)
+    except:
+        all_items = []
     return render(request, 'page/new/search.html', locals())
 
 

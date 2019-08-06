@@ -10,7 +10,7 @@
 					<div class="breadcrumb clearfix">
 						<ul class="ul-breadcrumb">
 							<li><a href="/" >Главная</a></li>
-                            <li><a href="/" >Каталог</a></li>
+                            <li><a href="{% url 'catalog' %}" >Каталог</a></li>
 							<li><a href="{% url 'category'  item.category.name_slug  %}" >{{ item.category.name }}</a></li>
 							<li><span>{{ item.name }}</span></li>
 						</ul>
@@ -58,9 +58,12 @@
 								<h1>{{ item.name }}</h1>
 
 								<div class="price clearfix">
-									<p class="our_price_display">
-										{{ item.price }} &#8381;
-									</p>
+                                     {% if item.discount > 0 %}
+                                    <p class="our_price_display">{{ item.discount_value }} &#8381;</p>
+                                    <p class="old_price">{{ item.price }} &#8381;</p>
+                                    {% else %}
+                                       <p class="our_price_display">{{ item.price }} &#8381;</p>
+                                    {% endif %}
 
 								</div><!-- end price -->
 

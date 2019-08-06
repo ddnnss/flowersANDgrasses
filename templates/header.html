@@ -1,114 +1,142 @@
 {% load static %}
 
-		<header id="top-header">
+<header id="top-header">
 
-				<div class="header-main">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-2 col-md-2 col-sm-5 col-xs-5">
-								<div class="logo">
-									<a href="/" title="Tiva byHands">
-										<img style="width: 300px !important;"  src="{% static 'new_static/img/Logo_simple.png' %}" alt="">
-									</a>
-								</div><!--end logo-->
-							</div>
-							<div class="col-lg-10 col-md-10 col-sm-7 col-xs-7">
-								<div class="topheader-navholder">
-									<div class="topheader-navholder-lf">
-										<div id="block-cart" class="block-cart dropdown-over pull-right">
-											<div data-toggle="dropdown" class="dropdown-title">
-												<a href="#" title="Shopping cart">
-													<span class="title-cart"><i class="zmdi zmdi-shopping-basket"></i></span>
-                                                    {% if count_items_in_cart > 0  %}
-													<span class="ajax_cart_quantity">{{ count_items_in_cart }}</span>
-                                                        {% else %}
-                                                       <span class="ajax_cart_quantity">0</span>
-                                                    {% endif %}
-												</a>
-											</div>
-											<div class="dropdown-content">
-												<div class="cart_block_list">
-													<table class="cart">
-														<tbody class="cart_table_lg">
-                                                             {% if not count_items_in_cart > 0  %}
-                                                               <tr>
-                                                               <td>
-                                                                   Корзина пуста
-                                                               </td>
-                                                               </tr>
-                                                                 {% else %}
-                                                                 {% for item in all_items_in_cart %}
+    <div class="header-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-5 col-xs-5">
+                    <div class="logo">
+                        <a href="/" title="">
+                            <img style="width: 300px !important;"  src="{% static 'new_static/img/Logo_simple.png' %}" alt="">
+                        </a>
+                    </div><!--end logo-->
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-7 col-xs-7">
+                    <div class="topheader-navholder">
+                        <div class="topheader-navholder-lf">
 
-                                                                 <tr>
-																<td class="product-thumbnail">
-																	<a href="{% url 'product' item.item.name_slug %}">
-																		<img width="80" height="107" alt="" class="img-responsive" src="{{ item.item.itemimage_set.first.image.url }}">
-																	</a>
-																</td>
-																<td class="product-name">
-																	<a href="{% url 'product' item.item.name_slug %}">{{ item.item.name }}</a>
-																	<br><span class="amount"><strong>{{ item.number }} X {{ item.item.price }} &#8381; = {{ item.total_price }} &#8381;</strong></span>
-																</td>
-																<td class="product-actions">
-																	<a data-item_id="{{ item.item.id }}" class="remove" onclick="delete_from_cart(this);return false;">
-																		<i class="fa fa-times"></i>
-																	</a>
-																</td>
-															</tr>
-                                                                 {% endfor %}
-															<tr>
-																<td class="actions" colspan="3">
-																	<div class="actions-continue">
-                                                                          <a style="color: #FFFFFF !important;" class="btn btn-default" href="{% url 'show_cart' %}"> <i class="fa fa-shopping-cart"> </i> ПРОСМОТР КОРЗИНЫ</a>
-                                                                          <a  style="color: #FFFFFF !important;" class="btn pull-right btn-primary" href="{% url 'checkout' %}"> ОПЛАТА</a>
+                            <div id="block-cart" class="block-cart dropdown-over pull-right">
+                                <div data-toggle="dropdown" class="dropdown-title">
+                                    <a href="#" title="Shopping cart">
+                                        <span class="title-cart"><i class="zmdi zmdi-shopping-basket"></i></span>
+                                        {% if count_items_in_cart > 0  %}
+                                            <span class="ajax_cart_quantity">{{ count_items_in_cart }}</span>
+                                        {% else %}
+                                            <span class="ajax_cart_quantity">0</span>
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="dropdown-content">
+                                    <div class="cart_block_list">
+                                        <table class="cart">
+                                            <tbody class="cart_table_lg">
+                                            {% if not count_items_in_cart > 0  %}
+                                                <tr>
+                                                    <td>
+                                                        Корзина пуста
+                                                    </td>
+                                                </tr>
+                                            {% else %}
+                                                {% for item in all_items_in_cart %}
 
-																	</div>
-																</td>
-															</tr>
-                                                             {% endif %}
+                                                    <tr>
+                                                        <td class="product-thumbnail">
+                                                            <a href="{% url 'product' item.item.name_slug %}">
+                                                                <img width="80" height="107" alt="" class="img-responsive" src="{{ item.item.itemimage_set.first.image.url }}">
+                                                            </a>
+                                                        </td>
+                                                        <td class="product-name">
+                                                            <a href="{% url 'product' item.item.name_slug %}">{{ item.item.name }}</a>
+                                                            <br><span class="amount"><strong>{{ item.number }} X {{ item.item.price }} &#8381; = {{ item.total_price }} &#8381;</strong></span>
+                                                        </td>
+                                                        <td class="product-actions">
+                                                            <a data-item_id="{{ item.item.id }}" class="remove" onclick="delete_from_cart(this);return false;">
+                                                                <i class="fa fa-times"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                                <tr>
+                                                    <td class="actions" colspan="3">
+                                                        <div class="actions-continue">
+                                                            <a style="color: #FFFFFF !important;" class="btn btn-default" href="{% url 'show_cart' %}"> <i class="fa fa-shopping-cart"> </i> ПРОСМОТР КОРЗИНЫ</a>
+                                                            <a  style="color: #FFFFFF !important;" class="btn pull-right btn-primary" href="{% url 'checkout' %}"> ОПЛАТА</a>
 
-														</tbody>
-													</table>
-												</div>
-											</div><!-- end dropdown-content -->
-										</div><!-- end blockcart_top -->
-										<div id="search_block_top" class="block-search dropdown-over pull-right">
-											<div data-toggle="dropdown" class="dropdown-title">
-												<a href="#" title="Search"><i class="zmdi zmdi-search"></i></a>
-											</div>
-											<div class="dropdown-content">
-												<form id="searchbox" action="{% url 'search' %}" method="get">
-													<div class="input-group">
-														<input class="search_query form-control" type="text" required="required" id="search_query_top" name="q" placeholder="Что ищем?" value="" autocomplete="off">
-														<div class="input-group-btn">
-															<button type="submit" class="btn button btn-primary">ПОИСК</button>
-														</div>
-													</div>
-												</form>
-											</div>
-										</div><!-- end #search_block_top -->
-									</div><!-- end topheader-navholder-lf -->
-									<div class="topheader-navholder-rg">
-										<span id="btn-menu"><i class="zmdi zmdi-menu"></i></span>
-										<nav id="main-nav">
-											<ul class="nav navbar-nav ">
-												<li class="dropdown"><a href='/'>ГЛАВНАЯ </a></li>
-												<li class="dropdown"><a href='#'>КАТАЛОГ </a></li>
-												<li class="dropdown"><a href='#'>БЛОГ </a></li>
-												<li class="dropdown"><a href='{% url 'contacts' %}'>КОНТАКТЫ </a></li>
-												<li class="dropdown"><a href='{% url 'about' %}'>О НАС</a></li>
-                                               {% if not request.user.is_authenticated %}
-{#                                                <li class="dropdown"><a href='{% url 'login' %}'><i style="font-size: 19px" class="fa fa-user "></i></a></li>#}
-                                                {% else %}
-{#                                                   <li class="dropdown"><a href='{% url 'logout' %}'><i style="font-size: 19px" class="fa fa-sign-out "></i></a></li>#}
-                                                {% endif %}
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {% endif %}
 
-                                            </ul>
-										</nav><!-- end main-nav -->
-									</div><!-- end topheader-navholder-rg -->
-								</div><!-- end topheader-navholder -->
-							</div>
-						</div><!-- end row -->
-					</div><!-- end container -->
-				</div>
-			</header><!-- end header -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div><!-- end dropdown-content -->
+                            </div><!-- end blockcart_top -->
+                            {% if request.user.is_authenticated %}
+                                <div class="block_group_top dropdown-over pull-right">
+                                    <div data-toggle="dropdown" class="dropdown-title">
+                                        <a href="#" title="Group language, currency"><i class="fa fa-user"></i></a>
+                                    </div>
+                                    <div class="dropdown-content">
+
+
+                                        <ul style="border: none !important;" class="links">
+                                            <li style="display: block !important;">
+                                                <a class="login" href="№" >Профиль</a>
+                                            </li>
+                                            <li style="display: block !important;">
+                                                <a href="#" title="Заказы">Заказы</a>
+                                            </li>
+                                              <li style="display: block !important;">
+                                                <a href="#" title="Избранное">Избранное</a>
+                                            </li>
+                                            <li style="display: block !important;">
+                                                <a href="{% url 'logout' %}" title="Выход">Выход</a>
+                                            </li>
+
+                                        </ul>
+
+
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div id="search_block_top" class="block-search dropdown-over pull-right">
+                                <div data-toggle="dropdown" class="dropdown-title">
+                                    <a href="#" title="Search"><i class="zmdi zmdi-search"></i></a>
+                                </div>
+                                <div class="dropdown-content">
+                                    <form id="searchbox" action="{% url 'search' %}" method="get">
+                                        <div class="input-group">
+                                            <input class="search_query form-control" type="text" required="required" id="search_query_top" name="q" placeholder="Что ищем?" value="" autocomplete="off">
+                                            <div class="input-group-btn">
+                                                <button type="submit" class="btn button btn-primary">ПОИСК</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div><!-- end #search_block_top -->
+                        </div><!-- end topheader-navholder-lf -->
+                        <div class="topheader-navholder-rg">
+                            <span id="btn-menu"><i class="zmdi zmdi-menu"></i></span>
+                            <nav id="main-nav">
+                                <ul class="nav navbar-nav ">
+                                    <li class="dropdown"><a href='/'>ГЛАВНАЯ </a></li>
+                                    <li class="dropdown"><a href='{% url 'catalog' %}'>КАТАЛОГ </a></li>
+                                    {#												<li class="dropdown"><a href='#'>БЛОГ </a></li>#}
+                                    <li class="dropdown"><a href='{% url 'contacts' %}'>КОНТАКТЫ </a></li>
+                                    <li class="dropdown"><a href='{% url 'about' %}'>О НАС</a></li>
+                                    {% if not request.user.is_authenticated %}
+                                        <li class="dropdown"><a href='{% url 'login' %}'>ВХОД/РЕГИСТРАЦИЯ</a></li>
+
+                                    {% endif %}
+
+                                </ul>
+                            </nav><!-- end main-nav -->
+                        </div><!-- end topheader-navholder-rg -->
+                    </div><!-- end topheader-navholder -->
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div>
+</header><!-- end header -->

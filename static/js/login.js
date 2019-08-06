@@ -14,7 +14,7 @@ function login(){
             success : function(data){
                 console.log(data);
                 if(data['result'] == "success"){
-                    location.reload();
+                    window.location.replace("/");
                 }
                 else if(data['result'] == "inactive"){
                     $("#errorlogin").html("Please verify this E-mail address.");

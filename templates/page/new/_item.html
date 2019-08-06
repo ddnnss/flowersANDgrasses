@@ -47,8 +47,14 @@
 																</a>
 															</h5>
 															<div class="content_price">
-																<span class="price product-price">{{ item.price }} &#8381;</span>
-{#																<span class="old-price product-price">$30.51</span>#}
+                                                                {% if item.discount > 0 %}
+                                                                 <span class="old-price product-price">{{ item.price }} &#8381;</span>
+                                                                    <span class="price product-price">{{ item.discount_value }} &#8381;</span>
+                                                                {% else %}
+                                                                    	<span class="price product-price">{{ item.price }} &#8381;</span>
+                                                                {% endif %}
+
+
 															</div>
 {#															<div class="product_comments clearfix">#}
 {#																<div class="product-rating">#}

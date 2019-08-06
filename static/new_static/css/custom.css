@@ -103,3 +103,7 @@
 .our_price_display{
   color: #3c3c3c !important;
 }
+
+.login-popup {
+  background-color: rgba(0, 0, 0, 0.7);
+}

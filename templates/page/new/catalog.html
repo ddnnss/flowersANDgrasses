@@ -6,14 +6,13 @@
 					<div class="breadcrumb clearfix">
 						<ul class="ul-breadcrumb">
 							<li><a href="/" title="Home">Главная</a></li>
-                            <li><a href="{% url 'catalog' %}" title="Home">Каталог</a></li>
-							<li><span>{{ category.name }}</span></li>
+							<li><span>Каталог</span></li>
 						</ul>
 
 					</div>
 				</div>
 			</div><!-- end breadcrumb -->
-    <div class="section section-tabsproduct">
+              <div class="section section-tabsproduct">
 					<div class="container">
                             <div class="block-title">
 								<h4 class="title_block">{{ category.name }}</h4>
@@ -28,18 +27,24 @@
 							</div>
 						<div class="block_content">
 										<div class="row">
-                                            {% for item in items %}
-											<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 col-sp-12">
-												{% include 'page/new/_item.html' %}
-											</div>
-										    {% endfor %}
+                                             {% for category in all_category %}
+
+							<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="hvrbox">
+
+                                <img src="{{ category.image.url }}" alt="{{ category.name }}" class="img-responsive hvrbox-layer_bottom">
+                                <div class="hvrbox-layer_top hvrbox-layer_slideup">
+                                    <div class="hvrbox-text">{{ category.name }}<br><a href="{% url 'category' category.name_slug %}">Открыть</a></div>
+                                </div>
+                            </div>
+
+
+							</div>
+                            {% endfor %}
+
 										</div><!-- end row -->
 									</div><!-- end block_content -->
 					</div><!-- end container -->
 				</div>
-  <script>
-
-
-</script>
+    
 {% endblock %}
-

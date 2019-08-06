@@ -27,11 +27,11 @@
                         {% for item in wl %}
                         <tr id="wl_{{ item.id }}" class="CartProduct">
                             <td style="width:10%" class="CartProductThumb">
-                                <div><a href="{% url 'item_page' item.item.name_slug %}"><img src="{{ item.item.itemimage_set.first.image_small }}" alt="img"></a></div>
+                                <div><a href="{% url 'product' item.item.name_slug %}"><img src="{{ item.item.itemimage_set.first.image.url }}" alt="img"></a></div>
                             </td>
                             <td style="width:40%">
                                 <div class="CartDescription">
-                                    <h4><a href="{% url 'item_page' item.item.name_slug %}">{{ item.item.name }}</a></h4>
+                                    <h4><a href="{% url 'product' item.item.name_slug %}">{{ item.item.name }}</a></h4>
                                     <span class="size">{{ item.item.subcategory.name }}</span>
 
                                     {% if item.item.discount > 0 %}

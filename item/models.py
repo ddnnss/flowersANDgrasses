@@ -53,8 +53,8 @@ class Category(models.Model):
     page_title = models.CharField('Название страницы', max_length=255, blank=False, null=True)
     page_description = models.CharField('Описание страницы', max_length=255, blank=False, null=True)
     page_keywords = models.TextField('Keywords', blank=False, null=True)
-    description = RichTextUploadingField('Описание подкатегории', blank=True, null=True)
-    discount = models.IntegerField('Скидка на все товары в подкатегории %', blank=True, default=0)
+    description = RichTextUploadingField('Описание категории', blank=True, null=True)
+    discount = models.IntegerField('Скидка на все товары в категории %', blank=True, default=0)
     views = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -73,7 +73,7 @@ class Category(models.Model):
 
 
 class Filter(models.Model):
-    category = models.ForeignKey(Category, blank=True, null=True,on_delete=models.SET_NULL, verbose_name='Подкатегория')
+    category = models.ForeignKey(Category, blank=True, null=True,on_delete=models.SET_NULL, verbose_name='Принадлежит категории')
     name = models.CharField('Название фильтра', max_length=255, blank=False, null=True)
     name_slug = models.CharField(max_length=255, blank=True, null=True)
 
