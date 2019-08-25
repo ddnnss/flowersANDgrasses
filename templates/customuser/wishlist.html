@@ -21,29 +21,31 @@
             <div class="row userInfo">
 
                 <div class="col-xs-12 col-sm-12">
-                    <table>
+                    <table  style="width: 100%">
                         <tbody>
 
                         {% for item in wl %}
                         <tr id="wl_{{ item.id }}" class="CartProduct">
-                            <td style="width:10%" class="CartProductThumb">
-                                <div><a href="{% url 'product' item.item.name_slug %}"><img src="{{ item.item.itemimage_set.first.image.url }}" alt="img"></a></div>
+                            <td  class="CartProductThumb">
+                                <div><a href="{% url 'product' item.item.name_slug %}"><img style="width: 200px" src="{{ item.item.itemimage_set.first.image.url }}" alt="img"></a></div>
                             </td>
-                            <td style="width:40%">
+                            <td >
                                 <div class="CartDescription">
                                     <h4><a href="{% url 'product' item.item.name_slug %}">{{ item.item.name }}</a></h4>
-                                    <span class="size">{{ item.item.subcategory.name }}</span>
 
-                                    {% if item.item.discount > 0 %}
+
+                                </div>
+                            </td>
+                        <td>
+                             {% if item.item.discount > 0 %}
 
                                      <div class="price" style="padding-bottom: 5px;"><span style="font-size: 20px;"><span>{{ item.item.discount_value }} &#8381;</span> <span class="old-price">{{ item.item.price }} &#8381;</span></div>
                                 {% else %}
                                      <div class="price" style="padding-bottom: 5px;"><span style="font-size: 20px;">{{ item.item.price }} &#8381;</span></div>
                                 {% endif %}
-                                </div>
-                            </td>
+                        </td>
 
-                            <td style="width:40%" class="delete"><a  onclick="wishlist_delete({{ item.id }})" title="Удалить"> <i class="glyphicon glyphicon-trash fa-2x"></i> </a></td>
+                            <td style="width:40%" class="delete"><a style="cursor: pointer"  onclick="wishlist_delete({{ item.id }})" title="Удалить">Удалить</a></td>
                         </tr>
                         {% endfor %}
 

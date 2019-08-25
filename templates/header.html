@@ -83,13 +83,13 @@
 
                                         <ul style="border: none !important;" class="links">
                                             <li style="display: block !important;">
-                                                <a class="login" href="№" >Профиль</a>
+                                                <a class="login" href='{% url 'account' %}' >Профиль</a>
                                             </li>
                                             <li style="display: block !important;">
-                                                <a href="#" title="Заказы">Заказы</a>
+                                                <a href="{% url 'orders' %}" title="Заказы">Заказы</a>
                                             </li>
                                               <li style="display: block !important;">
-                                                <a href="#" title="Избранное">Избранное</a>
+                                                <a href="{% url 'wishlist' %}" title="Избранное">Избранное</a>
                                             </li>
                                             <li style="display: block !important;">
                                                 <a href="{% url 'logout' %}" title="Выход">Выход</a>

@@ -2316,6 +2316,8 @@ output {
   cursor: not-allowed;
   background-color: #eeeeee;
   opacity: 1;
+  text-align: center;
+  width: 50px;
 }
 
 textarea.form-control {

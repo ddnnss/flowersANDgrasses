@@ -1,15 +1,17 @@
 {% load static %}
-<div class="container main-container headerOffset">
-    <div class="row">
-        <div class="breadcrumbDiv col-lg-12">
-            <ul class="breadcrumb">
-                <li><a href="/">ГЛАВНАЯ</a></li>
-                <li><a href="{% url 'show_cart' %}">КОРЗИНА</a></li>
-                <li class="active"> ОФОРМЛЕНИЕ ЗАКАЗА</li>
-            </ul>
-        </div>
-    </div>
-    <!--/.row-->
+<div style="margin-bottom: 40px" class="container main-container headerOffset">
+ <div id="breadcrumb" class="clearfix">
+				<div class="container">
+					<div class="breadcrumb clearfix">
+						<ul class="ul-breadcrumb">
+							<li><a href="/" title="Home">Главная</a></li>
+                            <li><a href="{% url 'show_cart' %}" title="Home">Корзина</a></li>
+							<li><span>Оформление заказа</span></li>
+						</ul>
+
+					</div>
+				</div>
+			</div><!-- end breadcrumb -->
 
 
     <div class="row ">

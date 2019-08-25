@@ -44,10 +44,10 @@
                                {% for item in order.itemsinorder_set.all %}
                                      <tr class="CartProduct">
                                 <td class="CartProductThumb">
-                                       <div><a href="{% url 'item_page' item.item.name_slug %}"> <img style="width: 250px;" alt="img"
+                                       <div><a href="{% url 'product' item.item.name_slug %}"> <img style="width: 250px;" alt="img"
                                                         {% for image in item.item.itemimage_set.all %}
                                                             {% if image.is_main %}
-                                                               src="{{ image.image_small }}
+                                                               src="{{ image.image.url }}
                                                             {% endif %}
                                                         {% endfor %}">
                                                 </a>
@@ -55,7 +55,7 @@
                                 </td>
                                 <td>
                                     <div class="CartDescription">
-                                         <h4><a href="{% url 'item_page' item.item.name_slug %}"> {{ item.item.name }} </a></h4>
+                                         <h4><a href="{% url 'product' item.item.name_slug %}"> {{ item.item.name }} </a></h4>
 
 
                                        {% if item.item.discount > 0 %}

@@ -55,6 +55,7 @@ class Category(models.Model):
     page_keywords = models.TextField('Keywords', blank=False, null=True)
     description = RichTextUploadingField('Описание категории', blank=True, null=True)
     discount = models.IntegerField('Скидка на все товары в категории %', blank=True, default=0)
+    show_at_homepage = models.BooleanField('Отображать на главной?', default=False)
     views = models.IntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -151,7 +152,7 @@ class Item(models.Model):
         url = None
         for img in self.itemimage_set.all():
             if img.is_main:
-                url = img.image.url
+                url = img.image_small
         return url
 
     def image_tag(self):
@@ -187,19 +188,14 @@ class Item(models.Model):
 
 
 class ItemImage(models.Model):
-    upload_to = 'items/%d/%s'
 
-
-    def _get_upload_to(self, filename):
-        ext = filename.split('.')[-1]
-
-        filename = '{}.{}'.format(self.item.pk, ext)
-
-        return self.upload_to % (self.item.id, filename)
 
     item = models.ForeignKey(Item, blank=False, null=True, on_delete=models.CASCADE, verbose_name='Товар')
-    image = models.ImageField('Изображение товара', upload_to='items/', blank=False)
+    image = models.ImageField('Изображение товара', upload_to='items', blank=False)
+    image_small = models.CharField(max_length=255, blank=True, default='')
     is_main = models.BooleanField('Основная картинка ?', default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return '%s Изображение для товара : %s ' % (self.id, self.item.name)
@@ -210,60 +206,56 @@ class ItemImage(models.Model):
 
     def image_tag(self):
         # used in the admin site model as a "thumbnail"
-        if self.image:
-            return mark_safe('<img src="{}" width="150" height="150" />'.format(self.image.url))
+        if self.image_small:
+            return mark_safe('<img src="{}" width="150" height="150" />'.format(self.image_small))
         else:
             return mark_safe('<span>НЕТ МИНИАТЮРЫ</span>')
 
     image_tag.short_description = 'Картинка'
 
 
-    # def save(self, *args, **kwargs):
-    #     fill_color = '#fff'
-    #     image = Image.open(self.image)
-    #     # base_image = Image.open(self.image)
-    #
-    #     # if base_image.mode in ('RGBA', 'LA'):
-    #     #     background = Image.new(base_image.mode[:-1], base_image.size, fill_color)
-    #     #     background.paste(base_image, base_image.split()[-1])
-    #     #     base_image = background
-    #     # os.makedirs('media/items/{}'.format(self.item.id), exist_ok=True)
-    #     # watermark = Image.open('static/images/watermark30.png')
-    #     # width, height = base_image.size
-    #     # transparent = Image.new('RGB', (width, height), (0, 0, 0, 0))
-    #     # transparent.paste(base_image, (0, 0))
-    #     # transparent.paste(watermark, (291, 386), mask=watermark)
-    #     # # transparent.show()
-    #     # image_url = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '_watermarked.jpg')
-    #     # if settings.DEBUG:
-    #     #     transparent.save(image_url, 'JPEG', quality=80)
-    #     # else:
-    #     #     transparent.save('laskshmi/' + image_url, 'JPEG', quality=80)
-    #     # original_image_url = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '_original.jpg')
-    #     # if settings.DEBUG:
-    #     #     base_image.save(original_image_url, 'JPEG', quality=80)
-    #     # else:
-    #     #     base_image.save('laskshmi/' + original_image_url, 'JPEG', quality=80)
-    #     # # transparent.save(image_url, 'JPEG', quality=80)
-    #     # self.image = '/' + image_url
-    #
-    #
-    #     if image.mode in ('RGBA', 'LA'):
-    #          background = Image.new(image.mode[:-1], image.size, fill_color)
-    #          background.paste(image, image.split()[-1])
-    #          image = background
-    #     os.makedirs('media/items/{}'.format(self.item.id), exist_ok=True)
-    #     width, height = image.size
-    #     transparent = Image.new('RGB', (width, height), (0, 0, 0, 0))
-    #     transparent.thumbnail((400, 400), Image.ANTIALIAS)
-    #     small_name = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '.jpg')
-    #     if settings.DEBUG:
-    #         transparent.save(small_name, 'JPEG', quality=75)
-    #     else:
-    #         transparent.save('laskshmi/' + small_name, 'JPEG', quality=75)
-    #     self.image_small = '/' + small_name
-    #
-    #     super(ItemImage, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        fill_color = '#fff'
+        image = Image.open(self.image).convert('RGB')
+
+        # if base_image.mode in ('RGBA', 'LA'):
+        #     background = Image.new(base_image.mode[:-1], base_image.size, fill_color)
+        #     background.paste(base_image, base_image.split()[-1])
+        #     base_image = background
+        os.makedirs('media/items/{}'.format(self.item.id), exist_ok=True)
+        # watermark = Image.open('static/images/watermark30.png')
+        # width, height = base_image.size
+        # transparent = Image.new('RGB', (width, height), (0, 0, 0, 0))
+        # transparent.paste(base_image, (0, 0))
+        # transparent.paste(watermark, (291, 386), mask=watermark)
+        # # transparent.show()
+        # image_url = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '_watermarked.jpg')
+        # if settings.DEBUG:
+        #     transparent.save(image_url, 'JPEG', quality=80)
+        # else:
+        #     transparent.save('laskshmi/' + image_url, 'JPEG', quality=80)
+        # original_image_url = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '_original.jpg')
+        # if settings.DEBUG:
+        #     base_image.save(original_image_url, 'JPEG', quality=80)
+        # else:
+        #     base_image.save('laskshmi/' + original_image_url, 'JPEG', quality=80)
+        # # transparent.save(image_url, 'JPEG', quality=80)
+        # self.image = '/' + image_url
+
+
+        if image.mode in ('RGBA', 'LA'):
+            background = Image.new(image.mode[:-1], image.size, fill_color)
+            background.paste(image, image.split()[-1])
+            image = background
+        image.thumbnail((200, 240), Image.ANTIALIAS)
+        small_name = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '.jpg')
+        if settings.DEBUG:
+            image.save(small_name, 'JPEG', quality=75)
+        else:
+            image.save('laskshmi/' + small_name, 'JPEG', quality=75)
+        self.image_small = '/' + small_name
+
+        super(ItemImage, self).save(*args, **kwargs)
 
 
 

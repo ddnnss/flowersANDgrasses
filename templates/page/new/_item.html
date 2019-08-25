@@ -5,7 +5,7 @@
 																<img  alt="Tulipa floriade - red" class="img-responsive" width="480" height="640"
                                                                            {% for image in item.itemimage_set.all %}
                                                                                 {% if image.is_main %}
-                                                                                   src="{{ image.image.url }}"
+                                                                                   src="{{ image.image_small }}"
                                                                                 {% endif %}
                                                                             {% endfor %} >
 															</a>

@@ -225,11 +225,11 @@ def checkout(request):
             request.user.used_promo = None
             request.user.save(force_update=True)
             new_order = Order.objects.get(id=order.id)
-            msg_html = render_to_string('email/new_order.html', {'order': new_order})
-            send_mail('Заказ успешно размещен', None, 'info@lakshmi888.ru', [request.user.email],
-                      fail_silently=False, html_message=msg_html)
-            send_mail('Новый заказ', None, 'norply@lakshmi888.ru', ['info@lakshmi888.ru'],
-                      fail_silently=False, html_message=msg_html)
+            # msg_html = render_to_string('email/new_order.html', {'order': new_order})
+            # send_mail('Заказ успешно размещен', None, 'info@lakshmi888.ru', [request.user.email],
+            #           fail_silently=False, html_message=msg_html)
+            # send_mail('Новый заказ', None, 'norply@lakshmi888.ru', ['info@lakshmi888.ru'],
+            #           fail_silently=False, html_message=msg_html)
             return HttpResponseRedirect('/order/{}'.format(new_order.order_code))
 
 
@@ -304,12 +304,12 @@ def checkout(request):
             guest.used_promo = None
             guest.save(force_update=True)
             new_order = Order.objects.get(id=order.id)
-            msg_html = render_to_string('email/new_order.html', {'order': new_order})
-            send_mail('Заказ успешно размещен', None, 'info@lakshmi888.ru', [email],
-                      fail_silently=False, html_message=msg_html)
-            send_mail('Новый заказ', None, 'norply@lakshmi888.ru', ['info@lakshmi888.ru'],
-                      fail_silently=False, html_message=msg_html)
-            print('Email sent')
+            # msg_html = render_to_string('email/new_order.html', {'order': new_order})
+            # send_mail('Заказ успешно размещен', None, 'info@lakshmi888.ru', [email],
+            #           fail_silently=False, html_message=msg_html)
+            # send_mail('Новый заказ', None, 'norply@lakshmi888.ru', ['info@lakshmi888.ru'],
+            #           fail_silently=False, html_message=msg_html)
+            # print('Email sent')
             return HttpResponseRedirect('/order/{}'.format(new_order.order_code))
 
 
@@ -335,7 +335,7 @@ def index(request):
     keywords = 'Цветы'
     banners = Banner.objects.filter(is_active=True).order_by('order')
     all_collections = Collection.objects.filter(show_at_homepage=True)
-    all_category = Category.objects.all()
+    all_category = Category.objects.filter(show_at_homepage=True)
     return render(request, 'page/new/index.html', locals())
 
 
