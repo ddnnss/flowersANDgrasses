@@ -2,7 +2,7 @@
 													<div class="left-block">
 														<div class="product-image-container">
 															<a class="product_img_link" href="{% url 'product' item.name_slug %}" title="{{ item.name }}">
-																<img  alt="Tulipa floriade - red" class="img-responsive" width="480" height="640"
+																<img  alt="" class="img-responsive" width="480" height="640"
                                                                            {% for image in item.itemimage_set.all %}
                                                                                 {% if image.is_main %}
                                                                                    src="{{ image.image_small }}"
@@ -20,7 +20,7 @@
                                                                     data-item_name="{{ item.name }}"
                                                                     data-item_price="{{ item.price }}"
 
-                                                                    data-item_image="{{ item.itemimage_set.first.image.url }}"
+                                                                    data-item_image="{{ item.itemimage_set.first.image_small }}"
                                                                     onclick="quick_add_to_cart(this)"  rel="nofollow" title="В корзину"><i class="zmdi zmdi-shopping-cart"></i></a>
 {#																<a class="button btn quick-view" href="#" title="Quick view">#}
 {#																	<i class="zmdi zmdi-eye"></i>#}
