@@ -15,11 +15,11 @@
         </div>
     </div>
 
-    <div id="columns" class="columns-container">
+    <div id="columns" style="margin-bottom: 40px" class="columns-container">
 				<!-- container -->
 				<div class="container">
 					<div id="order-detail-content" class="table_block table-responsive">
-						<table id="cart_summary" class="table table-bordered">
+						<table id="cart_summary" class="table ">
 							<thead>
 								<tr>
 									<th class="cart_delete last_item">&nbsp;</th>
@@ -91,8 +91,8 @@
 						</table>
 					</div><!-- end order-detail-content -->
 					<div class="cart_navigation">
-						<a href="#" class="button btn btn-primary standard-checkout pull-right" title="Proceed to checkout">
-							<span>Proceed to checkout</span>
+						<a href="{% url 'checkout' %}" class="button btn btn-primary standard-checkout pull-right" title="Proceed to checkout">
+							<span>Перейти к оплате</span>
 							<i class="fa fa-angle-right ml-xs"></i>
 						</a>
 					</div><!-- end cart_navigation -->

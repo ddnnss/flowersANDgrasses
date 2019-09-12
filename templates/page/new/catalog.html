@@ -1,47 +1,53 @@
 {% extends 'basic.html' %}
 {% load static %}
 {% block content %}
-<div id="breadcrumb" class="clearfix">
-				<div class="container">
-					<div class="breadcrumb clearfix">
-						<ul class="ul-breadcrumb">
-							<li><a href="/" title="Home">Главная</a></li>
-							<li><span>Каталог</span></li>
-						</ul>
+    <div id="breadcrumb" class="clearfix">
+        <div class="container">
+            <div class="breadcrumb clearfix">
+                <ul class="ul-breadcrumb">
+                    <li><a href="/" title="Home">Главная</a></li>
+                    <li><span>Каталог</span></li>
+                </ul>
 
-					</div>
-				</div>
-			</div><!-- end breadcrumb -->
-              <div class="section section-tabsproduct">
-					<div class="container">
-                            <div class="block-title">
-								<h4 class="title_block">{{ category.name }}</h4>
-								<ul class="filter-items">
-                                    {% for filter in category.filter_set.all %}
-                                         <li><a {% if cur_filter.name_slug == filter.name_slug %} class="filter-active"{% endif %} href="?filter={{ filter.name_slug }}">{{ filter.name }}</a></li>
-                                    {% endfor %}
-{#                                    <li><a class="filter-active" href="#">фильтр 1</a></li>#}
+            </div>
+        </div>
+    </div><!-- end breadcrumb -->
+    <div class="section section-tabsproduct">
+        <div class="container">
+            <div class="block-title">
+                <h4 class="title_block">{{ category.name }}</h4>
+                <ul class="filter-items">
+                    {% for filter in category.filter_set.all %}
+                        <li><a {% if cur_filter.name_slug == filter.name_slug %} class="filter-active"{% endif %} href="?filter={{ filter.name_slug }}">{{ filter.name }}</a></li>
+                    {% endfor %}
+                    {#                                    <li><a class="filter-active" href="#">фильтр 1</a></li>#}
 
-                                </ul>
+                </ul>
 
-							</div>
-						<div class="block_content">
-										<div class="row">
-                                             {% for category in all_category %}
+            </div>
+            <div class="block_content">
+                <div class="row">
+                    {% for category in all_category %}
 
-							<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                             <div class="category-image">
-                            <a class="image-wrap" href="{% url 'category' category.name_slug %}" title=""><img class="img-responsive" src="{{ category.image.url }}" alt="">
-                            <span>{{ category.name }}</span></a>
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <div class="category-image">
+                                <a  href="{% url 'category' category.name_slug %}" title=""><img class="img-responsive" src="{{ category.image.url }}" alt=""></a>
+                                <div class="category-image-caption">
+                                    <a  href="{% url 'category' category.name_slug %}" title="">
+                                        <h5 >{{ category.name }}</h5>
+                                        <span class="category-description">{{ category.short_description }}</span>
+                                    </a>
+                                </div>
+
+                            </div>
+
+
                         </div>
+                    {% endfor %}
 
+                </div><!-- end row -->
+            </div><!-- end block_content -->
+        </div><!-- end container -->
+    </div>
 
-							</div>
-                            {% endfor %}
-
-										</div><!-- end row -->
-									</div><!-- end block_content -->
-					</div><!-- end container -->
-				</div>
-    
 {% endblock %}

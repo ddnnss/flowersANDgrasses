@@ -54,6 +54,7 @@ class Category(models.Model):
     page_description = models.CharField('Описание страницы', max_length=255, blank=False, null=True)
     page_keywords = models.TextField('Keywords', blank=False, null=True)
     description = RichTextUploadingField('Описание категории', blank=True, null=True)
+    short_description = models.CharField('Краткое описание категории для главной', max_length=255, blank=False, null=True)
     discount = models.IntegerField('Скидка на все товары в категории %', blank=True, default=0)
     show_at_homepage = models.BooleanField('Отображать на главной?', default=False)
     views = models.IntegerField(default=0)
@@ -250,9 +251,9 @@ class ItemImage(models.Model):
         image.thumbnail((200, 240), Image.ANTIALIAS)
         small_name = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '.jpg')
         if settings.DEBUG:
-            image.save(small_name, 'JPEG', quality=75)
+            image.save(small_name, 'JPEG', quality=100)
         else:
-            image.save('laskshmi/' + small_name, 'JPEG', quality=75)
+            image.save('laskshmi/' + small_name, 'JPEG', quality=100)
         self.image_small = '/' + small_name
 
         super(ItemImage, self).save(*args, **kwargs)
