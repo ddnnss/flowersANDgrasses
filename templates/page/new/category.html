@@ -7,7 +7,7 @@
 						<ul class="ul-breadcrumb">
 							<li><a href="/" title="Home">Главная</a></li>
                             <li><a href="{% url 'catalog' %}" title="Home">Каталог</a></li>
-							<li><span>{{ category.name }}</span></li>
+							<li><span style="color: #fff !important;">{{ category.name }}</span></li>
 						</ul>
 
 					</div>
@@ -37,6 +37,38 @@
 									</div><!-- end block_content -->
 					</div><!-- end container -->
 				</div>
+    <div class="content_sortPagiBar bottom clearfix">
+								 <nav id="items_paginator" class="shop-pagination" aria-label="Shop navigation">
+                                <ul class="pagination justify-content-end">
+                                {% if items.has_previous %}
+                                    <li class="page-item">
+                                      <a class="page-link" href="?{% if param_search %}&search={{ param_search }}{% endif %}{% if param_filter %}&filter={{ param_filter }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}" aria-label="Previous">
+                                        <span aria-hidden="true"><i class="fa fa-angle-left"></i></span>
+                                        <span class="sr-only">begin</span>
+                                      </a>
+                                    </li>
+                                {% endif %}
+                                    {% for pg in items.paginator.page_range %}
+                                        {% if items.number == pg %}
+                                            <li class="page-item active"><a class="page-link" href="?{% if pg > 1 %}page={{ pg }}{% endif %}{% if param_search %}&search={{ param_search }}{% endif %}{% if param_filter %}&filter={{ param_filter }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}">{{pg}}</a></li>
+                                        {% elif pg > items.number|add:'-6' and pg < items.number|add:'6' %}
+                                            <li class="page-item"><a class="page-link" href="?{% if pg > 1 %}page={{ pg }}{% endif %}{% if param_search %}&search={{ param_search }}{% endif %}{% if param_filter %}&filter={{ param_filter }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}">{{pg}}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% if items.has_next %}
+                                  <li class="page-item">
+                                    <a class="page-link" href="?page={{ items.paginator.num_pages }}{% if param_search %}&search={{ param_search }}{% endif %}{% if param_filter %}&filter={{ param_filter }}{% endif %}{% if param_order %}&order={{ param_order }}{% endif %}{% if param_count %}&count={{ param_count }}{% endif %}" aria-label="Next">
+                                      <span aria-hidden="true"><i class="fa fa-angle-right"></i></span>
+                                      <span class="sr-only">end</span>
+                                    </a>
+                                  </li>
+                                  {% endif %}
+
+                                </ul>
+
+                            </nav>
+							</div>
+
   <script>
 
 

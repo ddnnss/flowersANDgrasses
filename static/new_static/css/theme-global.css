@@ -97,7 +97,7 @@ a:hover {
 }
 
 #breadcrumb [class~=ul-breadcrumb] li a:hover {
-    color: black;
+    color: #B26E6B;
 }
 
 a:focus,
@@ -3343,7 +3343,7 @@ p {
 
 #breadcrumb [class~=ul-breadcrumb] li span,
 .pagination > li > a {
-    color: #fff;
+    color: #4c4c4c;
 }
 
 [class~=page-checkout] [class~=checkout-shopingcart] [class~=shop_tablecart] [class~=cart_quantity] [class~=quantity],
@@ -6763,7 +6763,7 @@ h4 {
 }
 
 [class~=pagination] > li[class~=active] > a {
-    border-top-color: #366D73;
+    border-color: #B26E6B;
 }
 
 [class~=home-3] [class~=section] [class~=title_block] {
@@ -6867,7 +6867,7 @@ h4 {
 }
 
 [class~=pagination] > li[class~=active] > a {
-    background-color: #366D73;
+    background-color: #B26E6B;
 }
 
 [class~=home-2] [class~=pagination] > li[class~=active] > a:focus {
@@ -10046,7 +10046,7 @@ span[class~=jslider][class~=jslider_plastic] [class~=jslider-bg] i[class~=v] {
 }
 
 [class~=pagination] > li[class~=active] > a:hover {
-    border-top-color: #366D73;
+    border-color: #B26E6B;
 }
 
 [class~=bullet] li {
@@ -10212,7 +10212,7 @@ span[class~=jslider][class~=jslider_plastic] [class~=jslider-bg] i[class~=v] {
 }
 
 [class~=pagination] > li[class~=active] > a:hover {
-    background-color: #366D73;
+    background-color: #B26E6B;
 }
 
 [class~=tiva-popup-screen] [class~=popup] [class~=btn] {
