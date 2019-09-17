@@ -248,12 +248,12 @@ class ItemImage(models.Model):
             background = Image.new(image.mode[:-1], image.size, fill_color)
             background.paste(image, image.split()[-1])
             image = background
-        image.thumbnail((200, 240), Image.ANTIALIAS)
+        image.thumbnail((500, 752), Image.ANTIALIAS)
         small_name = 'media/items/{}/{}'.format(self.item.id, str(uuid.uuid4()) + '.jpg')
         if settings.DEBUG:
-            image.save(small_name, 'JPEG', quality=100)
+            image.save(small_name, 'JPEG', quality=95)
         else:
-            image.save('laskshmi/' + small_name, 'JPEG', quality=100)
+            image.save('laskshmi/' + small_name, 'JPEG', quality=95)
         self.image_small = '/' + small_name
 
         super(ItemImage, self).save(*args, **kwargs)
