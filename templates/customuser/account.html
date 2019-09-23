@@ -4,15 +4,19 @@
 {% block content %}
 
 
-<div class="container main-container headerOffset globalPaddingBottom">
-    <div class="row">
-        <div class="breadcrumbDiv col-lg-12">
-            <ul class="breadcrumb">
-                <li><a href="/">ГЛАВНАЯ</a></li>
-                <li class="active">ЛИЧНЫЙ КАБИНЕТ</li>
-            </ul>
+
+    <div id="breadcrumb" class="clearfix">
+        <div class="container">
+            <div class="breadcrumb clearfix">
+                <ul class="ul-breadcrumb">
+                    <li><a href="/" title="Home">Главная</a></li>
+                    <li><span style="color: #fff !important;">Личный кабинет</span></li>
+                </ul>
+
+            </div>
         </div>
-    </div>
+    </div><!-- end breadcrumb -->
+<div style="margin-bottom: 40px" class="container main-container headerOffset globalPaddingBottom">
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-7">
             <h1 class="section-title-inner"><span><i class="fa fa-unlock-alt"></i> Личный кабинет </span></h1>
@@ -23,15 +27,15 @@
                     <h2 class="block-title-2"><span>Здесь вы можете узнать статус заказов, изменить личные данные и просмотреть закладки</span>
                     </h2>
                     <ul class="myAccountList row ">
-                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center " style="height: 126px;">
-                            <div class="thumbnail"><a title="Заказы" href="{% url 'orders' %}"><i class="fa fa-calendar"></i> Заказы </a></div>
+                        <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12  text-center " >
+                            <div class="thumbnail"><a  title="Заказы" href="{% url 'orders' %}"><i class="fa fa-calendar"></i> Заказы </a></div>
                         </li>
 
-                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center " style="height: 126px;">
+                        <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12  text-center " >
                             <div class="thumbnail"><a title="Личные данные" href="{% url 'account_edit' %}"><i class="fa fa-cog"></i>
                                 Личные данные</a></div>
                         </li>
-                        <li class="col-lg-2 col-md-2 col-sm-3 col-xs-4  text-center " style="height: 126px;">
+                        <li class="col-lg-4 col-md-4 col-sm-12 col-xs-12  text-center " >
                             <div class="thumbnail"><a title="Закладки" href="{% url 'wishlist' %}"><i class="fa fa-heart"></i> Закладки </a></div>
                         </li>
                     </ul>

@@ -3,172 +3,172 @@
 {% block content %}
 
     <div class="tiva-slideshow-wrapper">
-    {% for banner in banners %}
         <div id="tiva-slideshow" class="nivoSlider">
-            <a href="#" title="{{ banner.smallText }}"><img class="img-responsive" src="{{ banner.image.url}}" title="#caption{{ banner.id }}" alt="{{ banner.smallText }}"></a>
+            {% for banner in banners %}
+              <a href="#" title="{{ banner.smallText }}"><img class="img-responsive" src="{{ banner.image.url}}" title="#caption{{ banner.id }}" alt="{{ banner.smallText }}"></a>
+            {% endfor %}
         </div>
-    {% endfor %}
-    {% for banner in banners %}
-        <div  id="caption{{ banner.id }}" class="nivo-html-caption">
-        {% if banner.positionLeft %}
-            <div style="left: 50% !important; right: 0" class="tiva-caption">
-        {% elif banner.positionRight %}
-            <div class="tiva-caption">
+        {% for banner in banners %}
+            <div  id="caption{{ banner.id }}" class="nivo-html-caption">
+            {% if banner.positionLeft %}
+                <div style="left: 50% !important; right: 0" class="tiva-caption">
+            {% elif banner.positionRight %}
+                <div class="tiva-caption">
+            {% endif %}
+        {% if banner.badgeText %}
+            <div class="left-right hidden-xs medium_yellow_16"><span style="background-color: {{ banner.badgeColor }}; color: {{ banner.badgeTextColor }}">{{ banner.badgeText }}</span></div>
         {% endif %}
-    {% if banner.badgeText %}
-        <div class="left-right hidden-xs medium_yellow_16"><span>{{ banner.badgeText }}</span></div>
-    {% endif %}
-    <div class="left-right hidden-xs normal very_large_60">{{ banner.bigText }}</div>
-    {% if banner.badgeText %}
-        <div class="left-right  hidden-md hidden-sm hidden-xs slow medium_16">{{ banner.smallText }}</div>
-    {% endif %}
-    <div class="left-right hidden-xs slow"><a class="btn button btn-now" href="http://{{ banner.url }}" target="_blank" title="{{ banner.bigText }}">Подробнее</a></div>
-    </div>
-    </div>
-    {% endfor %}
+        <div class="left-right hidden-xs normal very_large_60" style="color: {{ banner.bigTextColor }} !important;">{{ banner.bigText }}</div>
+        {% if banner.badgeText %}
+            <div class="left-right  hidden-md hidden-sm hidden-xs slow medium_16" style="color: {{ banner.smallTextColor }} !important;">{{ banner.smallText }}</div>
+        {% endif %}
+        <div class="left-right hidden-xs slow"><a class="btn button btn-now" style="background-color: {{ banner.buttonColor }} !important; color: {{ banner.buttonTextColor }} !important;" href="http://{{ banner.url }}" target="_blank" title="{{ banner.bigText }}">Подробнее</a></div>
+        </div>
+        </div>
+        {% endfor %}
 
-</div><!-- end tiva-slideshow-wrapper -->
+    </div><!-- end tiva-slideshow-wrapper -->
 
-    <div class="section section-bestsellers">
-        <div class="container">
-            {#                        <h4 class="title_block">Каталог</h4>#}
-            <div class="row">
-                {% for category in all_category %}
+        <div class="section section-bestsellers">
+            <div class="container">
+                {#                        <h4 class="title_block">Каталог</h4>#}
+                <div class="row">
+                    {% for category in all_category %}
 
-                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="category-image">
-                            <a  href="{% url 'category' category.name_slug %}" title=""><img class="img-responsive" src="{{ category.image.url }}" alt=""></a>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <div class="category-image">
+                                <a  href="{% url 'category' category.name_slug %}" title=""><img class="img-responsive" src="{{ category.image.url }}" alt=""></a>
                                 <div class="category-image-caption">
-                                  <a  href="{% url 'category' category.name_slug %}" title="">
-                                 <h5 >{{ category.name }}</h5>
-                                    <span class="category-description">{{ category.short_description }}</span>
-                                      </a>
+                                    <a  href="{% url 'category' category.name_slug %}" title="">
+                                        <h5 >{{ category.name }}</h5>
+                                        <span class="category-description">{{ category.short_description }}</span>
+                                    </a>
                                 </div>
 
+                            </div>
+
                         </div>
-
-                    </div>
-                {% endfor %}
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div>
-    {#            <div class="section section-servies">#}
-    {#					<div class="services-items">#}
-    {#						<div class="row no-gutters">#}
-    {#							<div style=" text-align: center; background: #f5f5f5;"#}
-    {#                                 class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">#}
-    {#								<div class="services-item services-item1">#}
-    {#									<div class="media">#}
-    {#										<div class="icon-box">#}
-    {#											<i class="zmdi zmdi-truck"></i>#}
-    {#										</div>#}
-    {#										<div class="media-body">#}
-    {#											<h4><a title="Free shipping" href="#">Lorem ipsum dolor.</a></h4>#}
-    {#											<p>Lorem ipsum dolor.</p>#}
-    {#										</div>#}
-    {#									</div>#}
-    {#								</div><!--end services-item-->#}
-    {#							</div>#}
-    {#							<div style=" text-align: center; background: #b5b5b5;"#}
-    {#                                    class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">#}
-    {#								<div class="services-item services-item2">#}
-    {#									<div class="media">#}
-    {#										<div class="icon-box">#}
-    {#											<i class="zmdi zmdi-mail-reply-all"></i>#}
-    {#										</div>#}
-    {#										<div class="media-body">#}
-    {#											<h4><a title="Exchanges &amp; returns" href="#">Lorem ipsum dolor.</a></h4>#}
-    {#											<p>Lorem ipsum dolor.</p>#}
-    {#										</div>#}
-    {#									</div>#}
-    {#								</div><!--end services-item-->#}
-    {#							</div>#}
-    {#							<div style=" text-align: center; background: #f5f5f5;"#}
-    {#                                    class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">#}
-    {#								<div class="services-item services-item3">#}
-    {#									<div class="media">#}
-    {#										<div class="icon-box">#}
-    {#											<i class="zmdi zmdi-comments"></i>#}
-    {#										</div>#}
-    {#										<div class="media-body">#}
-    {#											<h4><a title="Online support" href="#">Lorem ipsum dolor.</a></h4>#}
-    {#											<p>Lorem ipsum dolor.</p>#}
-    {#										</div>#}
-    {#									</div>#}
-    {#								</div><!--end services-item-->#}
-    {#							</div>#}
-    {#						</div>#}
-    {#					</div><!-- end services-items -->#}
-    {#				</div>#}
-    <div id="columns" class="columns-container">
-        <div class="section section-banner">
-            <div class="container">
-                {% for collection in all_collections %}
-                    {% if forloop.counter|divisibleby:2 %}
-                        <div class="tv-table block">
-                            <div class="tv-tablecell box-image">
-                                <div class="banner-item effectbanner">
-                                    <a class="image-wrap" href="{% url 'collection' collection.name_slug %}"><img class="img-responsive" src="{{ collection.image.url }}" alt=""></a>
-                                </div><!--end banner-item-->
-                            </div>
-                            <div class="tv-tablecell">
-                                <div class="block-html block">
-                                    <h3>{{ collection.name }}</h3>
-
-                                    <p class="block-htmldes">{{ collection.description |safe }}</p>
-                                    <a class="button btn btn-primary" href="{% url 'collection' collection.name_slug %}" title="Shop now">Открыть</a>
-                                </div><!--end block-html -->
-                            </div>
-                        </div>
-                    {% else %}
-
-                        <div class="tv-table block">
-                            <div class="tv-tablecell">
-                                <div class="block-html block">
-                                    <h3>{{ collection.name }}</h3>
-
-                                    <p class="block-htmldes">{{ collection.description | safe }}</p>
-                                    <a class="button btn btn-primary" href="{% url 'collection' collection.name_slug %}" title="Shop now">Открыть</a>
-                                </div><!--end block-html -->
-                            </div>
-                            <div class="tv-tablecell box-image">
-                                <div class="banner-item effectbanner">
-                                    <a class="image-wrap" href="{% url 'collection' collection.name_slug %}"><img class="img-responsive" src="{{ collection.image.url }}" alt=""></a>
-                                </div><!--end banner-item-->
-                            </div>
-                        </div>
-                    {% endif %}
-
-
-                {% endfor %}
-
+                    {% endfor %}
+                </div><!-- end row -->
             </div><!-- end container -->
-        </div><!-- end section-banner -->
+        </div>
+        {#            <div class="section section-servies">#}
+        {#					<div class="services-items">#}
+        {#						<div class="row no-gutters">#}
+        {#							<div style=" text-align: center; background: #f5f5f5;"#}
+        {#                                 class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">#}
+        {#								<div class="services-item services-item1">#}
+        {#									<div class="media">#}
+        {#										<div class="icon-box">#}
+        {#											<i class="zmdi zmdi-truck"></i>#}
+        {#										</div>#}
+        {#										<div class="media-body">#}
+        {#											<h4><a title="Free shipping" href="#">Lorem ipsum dolor.</a></h4>#}
+        {#											<p>Lorem ipsum dolor.</p>#}
+        {#										</div>#}
+        {#									</div>#}
+        {#								</div><!--end services-item-->#}
+        {#							</div>#}
+        {#							<div style=" text-align: center; background: #b5b5b5;"#}
+        {#                                    class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">#}
+        {#								<div class="services-item services-item2">#}
+        {#									<div class="media">#}
+        {#										<div class="icon-box">#}
+        {#											<i class="zmdi zmdi-mail-reply-all"></i>#}
+        {#										</div>#}
+        {#										<div class="media-body">#}
+        {#											<h4><a title="Exchanges &amp; returns" href="#">Lorem ipsum dolor.</a></h4>#}
+        {#											<p>Lorem ipsum dolor.</p>#}
+        {#										</div>#}
+        {#									</div>#}
+        {#								</div><!--end services-item-->#}
+        {#							</div>#}
+        {#							<div style=" text-align: center; background: #f5f5f5;"#}
+        {#                                    class="col-lg-4 col-md-4 col-sm-4 col-xs-12 col-sp-12">#}
+        {#								<div class="services-item services-item3">#}
+        {#									<div class="media">#}
+        {#										<div class="icon-box">#}
+        {#											<i class="zmdi zmdi-comments"></i>#}
+        {#										</div>#}
+        {#										<div class="media-body">#}
+        {#											<h4><a title="Online support" href="#">Lorem ipsum dolor.</a></h4>#}
+        {#											<p>Lorem ipsum dolor.</p>#}
+        {#										</div>#}
+        {#									</div>#}
+        {#								</div><!--end services-item-->#}
+        {#							</div>#}
+        {#						</div>#}
+        {#					</div><!-- end services-items -->#}
+        {#				</div>#}
+        <div id="columns" class="columns-container">
+            <div class="section section-banner">
+                <div class="container">
+                    {% for collection in all_collections %}
+                        {% if forloop.counter|divisibleby:2 %}
+                            <div class="tv-table block">
+                                <div class="tv-tablecell box-image">
+                                    <div class="banner-item effectbanner">
+                                        <a class="image-wrap" href="{% url 'collection' collection.name_slug %}"><img class="img-responsive" src="{{ collection.image.url }}" alt=""></a>
+                                    </div><!--end banner-item-->
+                                </div>
+                                <div class="tv-tablecell">
+                                    <div class="block-html block">
+                                        <h3>{{ collection.name }}</h3>
 
-       
-        <div class="section section-newsletter">
-            <div class="container">
-                <!-- start newsletter -->
-                <div class="block-newsletter" id="block-newsletter">
-                    <h4 class="title_block">Оформить цветочную подписку</h4>
-                    <p class="descript">Напишите нам свой email и мы свяжемся с Вами!</p>
-                    <form action="#" method="post" class="form-inline">
-                        <div class="form-group">
-                            <input class="inputNew form-control grey newsletter-input" id="newsletter-input" type="text" name="email" size="18" placeholder="Введите Email...">
-                            <button type="submit" name="submitNewsletter" class="btn-primary btn button button-small">
-                                <span class="submit-icon"></span>
-                                <span class="submit-text">Отправить</span>
-                            </button>
-                        </div>
-                    </form>
-                </div><!-- end block-newsletter -->
-            </div>
-        </div><!-- end section section-newsletter -->
+                                        <p class="block-htmldes">{{ collection.description |safe }}</p>
+                                        <a class="button btn btn-primary" href="{% url 'collection' collection.name_slug %}" title="Shop now">Открыть</a>
+                                    </div><!--end block-html -->
+                                </div>
+                            </div>
+                        {% else %}
+
+                            <div class="tv-table block">
+                                <div class="tv-tablecell">
+                                    <div class="block-html block">
+                                        <h3>{{ collection.name }}</h3>
+
+                                        <p class="block-htmldes">{{ collection.description | safe }}</p>
+                                        <a class="button btn btn-primary" href="{% url 'collection' collection.name_slug %}" title="Shop now">Открыть</a>
+                                    </div><!--end block-html -->
+                                </div>
+                                <div class="tv-tablecell box-image">
+                                    <div class="banner-item effectbanner">
+                                        <a class="image-wrap" href="{% url 'collection' collection.name_slug %}"><img class="img-responsive" src="{{ collection.image.url }}" alt=""></a>
+                                    </div><!--end banner-item-->
+                                </div>
+                            </div>
+                        {% endif %}
 
 
-    </div><!--end columns -->
+                    {% endfor %}
+
+                </div><!-- end container -->
+            </div><!-- end section-banner -->
 
 
+            <div class="section section-newsletter">
+                <div class="container">
+                    <!-- start newsletter -->
+                    <div class="block-newsletter" id="block-newsletter">
+                        <h4 class="title_block">Оформить цветочную подписку</h4>
+                        <p class="descript">Напишите нам свой email и мы свяжемся с Вами!</p>
+                        <form action="#" method="post" class="form-inline">
+                            <div class="form-group">
+                                <input class="inputNew form-control grey newsletter-input" id="newsletter-input" type="text" name="email" size="18" placeholder="Введите Email...">
+                                <button type="submit" name="submitNewsletter" class="btn-primary btn button button-small">
+                                    <span class="submit-icon"></span>
+                                    <span class="submit-text">Отправить</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div><!-- end block-newsletter -->
+                </div>
+            </div><!-- end section section-newsletter -->
+
+
+        </div><!--end columns -->
+
+    </div>
 {% endblock %}
 
 {% block js %}

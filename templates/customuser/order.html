@@ -3,22 +3,20 @@
 
 {% block content %}
 
-<!DOCTYPE html>
+  <div id="breadcrumb" class="clearfix">
+        <div class="container">
+            <div class="breadcrumb clearfix">
+                <ul class="ul-breadcrumb">
+                    <li><a href="/" title="Home">Главная</a></li>
+                    <li><a href="{% url 'account' %}">Личный кабинет</a></li>
+                    <li><a href="{% url 'orders' %}">Ваши заказы</a></li>
+                    <li><span style="color: #fff !important;">Заказ #{{ order.id }} ID:{{ order.order_code }}</span></li>
+                </ul>
 
-
-<div class="container main-container headerOffset">
-      <div class="row">
-        <div class="breadcrumbDiv col-lg-12">
-            <ul class="breadcrumb">
-                <li><a href="/">ГЛАВНАЯ</a></li>
-                <li><a href="{% url 'account' %}">ЛИЧНЫЙ КАБИНЕТ</a></li>
-                 <li><a href="{% url 'orders' %}">ВАШИ ЗАКАЗЫ</a></li>
-                <li class="active">ЗАКАЗ #{{ order.id }} ID:{{ order.order_code }}</li>
-            </ul>
+            </div>
         </div>
-    </div>
-
-
+    </div><!-- end breadcrumb -->
+<div style="margin-bottom: 40px" class="container main-container headerOffset">
 
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-7">

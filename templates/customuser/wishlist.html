@@ -2,66 +2,62 @@
 {% load static %}
 
 {% block content %}
-<div class="container main-container headerOffset globalPaddingBottom">
-   <div class="row">
-        <div class="breadcrumbDiv col-lg-12">
-            <ul class="breadcrumb">
-                <li><a href="/">ГЛАВНАЯ</a></li>
-                <li><a href="{% url 'account' %}">ЛИЧНЫЙ КАБИНЕТ</a></li>
-                <li class="active">ЗАКЛАДКИ</li>
-            </ul>
-        </div>
-    </div>
-    <!--/.row-->
-
-    <div class="row">
-        <div class="col-lg-9 col-md-9 col-sm-7">
-
-
-            <div class="row userInfo">
-
-                <div class="col-xs-12 col-sm-12">
-                    <table  style="width: 100%">
-                        <tbody>
-
-                        {% for item in wl %}
-                        <tr id="wl_{{ item.id }}" class="CartProduct">
-                            <td  class="CartProductThumb">
-                                <div><a href="{% url 'product' item.item.name_slug %}"><img style="width: 200px" src="{{ item.item.itemimage_set.first.image.url }}" alt="img"></a></div>
-                            </td>
-                            <td >
-                                <div class="CartDescription">
-                                    <h4><a href="{% url 'product' item.item.name_slug %}">{{ item.item.name }}</a></h4>
-
-
-                                </div>
-                            </td>
-                        <td>
-                             {% if item.item.discount > 0 %}
-
-                                     <div class="price" style="padding-bottom: 5px;"><span style="font-size: 20px;"><span>{{ item.item.discount_value }} &#8381;</span> <span class="old-price">{{ item.item.price }} &#8381;</span></div>
-                                {% else %}
-                                     <div class="price" style="padding-bottom: 5px;"><span style="font-size: 20px;">{{ item.item.price }} &#8381;</span></div>
-                                {% endif %}
-                        </td>
-
-                            <td style="width:40%" class="delete"><a style="cursor: pointer"  onclick="wishlist_delete({{ item.id }})" title="Удалить">Удалить</a></td>
-                        </tr>
-                        {% endfor %}
-
-
-                        </tbody>
-                    </table>
-                </div>
-
+  <div id="breadcrumb" class="clearfix">
+        <div class="container">
+            <div class="breadcrumb clearfix">
+                <ul class="ul-breadcrumb">
+                    <li><a href="/" title="Home">Главная</a></li>
+                    <li><a href="{% url 'account' %}">Личный кабинет</a></li>
+                    <li><span style="color: #fff !important;">Избранные товары</span></li>
+                </ul>
 
             </div>
-            <!--/row end-->
-
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-5"></div>
-    </div>
-    <!--/.row-->
-    <div style="clear:both"></div>
-</div>
+    </div><!-- end breadcrumb -->
+
+     <div  style="margin-bottom: 40px" class="columns-container">
+				<!-- container -->
+				<div class="container">
+					<div id="order-detail-content" class="table_block table-responsive">
+						<table id="cart_summary" class="table ">
+
+							<tbody >
+                          {% for item in wl %}
+								<tr id="wl_{{ item.id }}">
+									<td class="cart_delete text-center">
+										<a title="Удалить из избранного" class="remove" href="javascript:void(0)" onclick="wishlist_delete({{ item.id }})">
+											<i class="fa fa-times"></i>
+										</a>
+									</td>
+									<td class="cart_product">
+                                        <a href="{% url 'product' item.item.name_slug %}">
+                                            <img src="{{ item.item.itemimage_set.first.image.url }}" alt="{{ item.item.name }}" width="80" height="107" class="img-responsive">
+                                        </a>
+									</td>
+									<td class="cart_description">
+										<a href="{% url 'product' item.item.name_slug %}">{{ item.item.name }}</a>
+									</td>
+                                    <td class="cart_unit text-right">
+										 {% if item.item.discount > 0 %}
+
+                                     <div class="price" ><span ><span>{{ item.item.discount_value }} &#8381;</span> <span class="old-price">{{ item.item.price }} &#8381;</span></div>
+                                {% else %}
+                                     <div class="price" ><span >{{ item.item.price }} &#8381;</span></div>
+                                {% endif %}
+									</td>
+
+
+
+								</tr>
+                            {% endfor %}
+
+
+							</tbody>
+						</table>
+					</div><!-- end order-detail-content -->
+
+				</div> <!-- end container -->
+			</div>
+
+
 {% endblock %}
