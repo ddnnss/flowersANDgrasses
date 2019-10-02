@@ -2,7 +2,8 @@ function add_to_cart(form,i_id) {
     if (i_id){
        // console.log(form.elements[i_id+"_items_number"].value);
     var btn = "#"+i_id+"_submit"
-     // console.log($(btn).data('item_name'));
+        var item_text = $('#item_text').val()
+     console.log(item_text);
      //
 
         // console.log(form.elements["items_number"].value);
@@ -32,6 +33,7 @@ function add_to_cart(form,i_id) {
     //  console.log(csrf_token);
         var data = {};
         data.item_id = item_id;
+        data.item_text = item_text;
         data.item_number = item_number;
         data['csrfmiddlewaretoken'] = csrf_token;
         var url = $(form).attr('action');

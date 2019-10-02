@@ -199,4 +199,34 @@
     /*text-align: center;*/
     /*padding: 5px 0;*/
 /*}*/
+.btn-primary{
+  border: none !important;
+}
+.btn-primary:hover{
+  background-color: #B26E6B !important;
 
+}
+
+.our_price_display{
+  color: #B26E6B !important;
+}
+.price{
+  border-bottom: 1px solid #cecece;
+    padding-bottom: 20px;
+}
+#short_description_block{
+  padding: 20px 0;
+  border-bottom: 1px solid #cecece;
+}
+
+.no-border{
+  border: none !important;
+}
+
+#item_text{
+  font-size: 12px;
+}
+#header_cart_item_text{
+  margin: 0;
+  font-size: 12px;
+}
