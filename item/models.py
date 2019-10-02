@@ -9,6 +9,7 @@ import string
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 from django.utils.safestring import mark_safe
+
 #from laskshmi import settings
 
 import os
@@ -121,6 +122,7 @@ class Collection(models.Model):
         verbose_name = "Коллекция"
         verbose_name_plural = "Коллекции"
 
+
 class Item(models.Model):
     collection = models.ManyToManyField(Collection, blank=True, verbose_name='Коллекция',db_index=True)
     filter = models.ForeignKey(Filter, blank=True, null=True, on_delete=models.SET_NULL,db_index=True)
@@ -185,6 +187,7 @@ class Item(models.Model):
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
+
 
 
 

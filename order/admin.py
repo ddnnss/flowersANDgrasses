@@ -3,8 +3,8 @@ from .models import *
 
 class ItemsInline (admin.TabularInline):
     model = ItemsInOrder
-    fields = ('image_tag', 'name_tag', 'article_tag', 'number', 'total_price',)
-    readonly_fields = ('image_tag', 'name_tag', 'article_tag', 'number', 'total_price',)
+    fields = ('image_tag', 'name_tag', 'article_tag', 'number','text', 'total_price',)
+    readonly_fields = ('image_tag', 'name_tag', 'article_tag','text', 'number', 'total_price',)
     #list_display = ['id', 'discount']
     extra = 0
     #
@@ -33,3 +33,4 @@ admin.site.register(OrderStatus)
 admin.site.register(OrderShipping)
 admin.site.register(OrderPayment)
 admin.site.register(ItemsInOrder)
+admin.site.register(Wishlist)

@@ -115,6 +115,7 @@ class ItemsInOrder(models.Model):
     item = models.ForeignKey(Item, blank=False, null=True, default=None, on_delete=models.CASCADE,
                               verbose_name='Товар')
     number = models.IntegerField('Кол-во', blank=True, null=True, default=0)
+    text = models.TextField('Надпись', default='', null=True, blank=True)
     current_price = models.IntegerField('Цена за ед.', default=0)
     total_price = models.IntegerField('Общая стоимость', default=0)
     created_at = models.DateTimeField(auto_now_add=True)

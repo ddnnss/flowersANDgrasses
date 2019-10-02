@@ -43,9 +43,16 @@
                                         <a href="{% url 'product' cart_item.item.name_slug %}">
                                             <img src="{{ cart_item.item.itemimage_set.first.image.url }}" alt="{{ cart_item.item.name }}" width="80" height="107" class="img-responsive">
                                         </a>
+
 									</td>
 									<td class="cart_description">
 										<a href="{% url 'product' cart_item.item.name_slug %}">{{ cart_item.item.name }}</a>
+                                        {% if cart_item.text %}
+                                        <p id='item_text'>Подпись: {{ cart_item.text }}</p>
+                                            {% else %}
+                                          <p id='item_text'>Без подписи</p>
+                                        {% endif %}
+
 									</td>
                                     <td class="cart_unit text-right">
 										<span class="amount">{{ cart_item.item.discount }} %</span>

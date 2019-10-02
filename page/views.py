@@ -217,7 +217,10 @@ def checkout(request):
             order.save(force_update=True)
             all_cart_items = Cart.objects.filter(client_id=request.user.id)
             for item in all_cart_items:
-                ItemsInOrder.objects.create(order_id=order.id, item_id=item.item.id, number=item.number,
+                ItemsInOrder.objects.create(order_id=order.id,
+                                            item_id=item.item.id,
+                                            number=item.number,
+                                            text=item.text,
                                             current_price=item.item.price)
                 item.item.buys = item.item.buys + 1
                 item.item.save(force_update=True)
@@ -296,7 +299,10 @@ def checkout(request):
             order.save(force_update=True)
             all_cart_items = Cart.objects.filter(guest_id=guest.id)
             for item in all_cart_items:
-                ItemsInOrder.objects.create(order_id=order.id, item_id=item.item.id, number=item.number,
+                ItemsInOrder.objects.create(order_id=order.id,
+                                            item_id=item.item.id,
+                                            number=item.number,
+                                            text=item.text,
                                             current_price=item.item.price)
                 item.item.buys = item.item.buys + 1
                 item.item.save(force_update=True)

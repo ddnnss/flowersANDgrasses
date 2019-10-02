@@ -15,6 +15,7 @@ def format_number(num):
 
 def show_cart(request):
 
+
     return render(request, 'page/new/cart.html', locals())
 
 def wishlist_delete(request):
@@ -46,14 +47,32 @@ def add_to_cart(request):
     s_key = request.session.session_key
     item_id = int(data.get('item_id'))
     item_number = int(data.get('item_number'))
+    item_text = data.get('item_text')
+    if not item_text:
+        item_text = None
+
+
     if request.user.is_authenticated:
         print('User is_authenticated')
-        addtocart, created = Cart.objects.get_or_create(client=request.user,
-                                                        item_id=item_id, defaults={'number': item_number})
-        if not created:
-            addtocart.number += int(item_number)
-            addtocart.save(force_update=True)
+        try:
+            itemTest = Cart.objects.get(client=request.user,item_id=item_id,text=item_text)
+            print('itemTest=',itemTest)
+            itemTest.number += int(item_number)
+            itemTest.save(force_update=True)
+        except:
+            print('new item')
+            Cart.objects.create(client=request.user, item_id=item_id, text=item_text, number=item_number)
+
+        # addtocart, created = Cart.objects.get_or_create(client=request.user,
+        #                                                 item_id=item_id, defaults={'number': item_number,
+        #                                                                            'text': itemText})
+        # if not created:
+        #     addtocart.number += int(item_number)
+        #     addtocart.save(force_update=True)
         all_items_in_cart = Cart.objects.filter(client=request.user)
+
+
+
 
     else:
         print('User is_not authenticated')
@@ -68,13 +87,28 @@ def add_to_cart(request):
             guest.save()
             print('Guest created')
 
-        addtocart, created = Cart.objects.get_or_create(guest=guest,
-                                                           item_id=item_id, defaults={'number': item_number})
-        if not created:
-            addtocart.number += int(item_number)
-            addtocart.save(force_update=True)
+
+        try:
+            itemTest = Cart.objects.get(guest=guest,item_id=item_id,text=item_text)
+            print('itemTest=',itemTest)
+            itemTest.number += int(item_number)
+            itemTest.save(force_update=True)
+        except:
+            print('new item')
+            Cart.objects.create(guest=guest, item_id=item_id, text=item_text, number=item_number)
+
+        # addtocart, created = Cart.objects.get_or_create(guest=guest,
+        #                                                 item_id=item_id,
+        #                                                 text=itemText,
+        #                                                 defaults={'number': item_number})
+        # if not created:
+        #     addtocart.number += int(item_number)
+        #     addtocart.save(force_update=True)
 
         all_items_in_cart = Cart.objects.filter(guest=guest)
+
+
+
     count_items_in_cart = all_items_in_cart.count()
     total_cart_price = 0
 
@@ -83,11 +117,16 @@ def add_to_cart(request):
     for item in all_items_in_cart:
         total_cart_price += item.total_price
         item_dict = dict()
-        item_dict['id'] = item.item.id
+        item_dict['id'] = item.id
         item_dict['name'] = item.item.name
         item_dict['name_slug'] = item.item.name_slug
         item_dict['price'] = item.current_price
         item_dict['total_price'] = item.total_price
+        if item.text:
+            item_dict['item_text'] = 'Подпись: {}'.format(item.text)
+        else:
+            item_dict['item_text'] = 'Без подписи'
+
         item_dict['number'] = item.number
         item_dict['image'] = item.item.itemimage_set.first().image.url
         return_dict['all_items'].append(item_dict)
@@ -105,14 +144,14 @@ def delete_from_cart(request):
 
     if request.user.is_authenticated:
         print('User is_authenticated')
-        Cart.objects.filter(client=request.user, item_id=item_id).delete()
+        Cart.objects.get(id=item_id).delete()
         all_items_in_cart = Cart.objects.filter(client=request.user)
 
     else:
         print('User is_not authenticated')
 
         guest = Guest.objects.get(session=s_key)
-        Cart.objects.filter(guest=guest, item_id=item_id).delete()
+        Cart.objects.get(id=item_id).delete()
         all_items_in_cart = Cart.objects.filter(guest=guest)
     count_items_in_cart = all_items_in_cart.count()
     total_cart_price = 0
@@ -122,11 +161,15 @@ def delete_from_cart(request):
     for item in all_items_in_cart:
         total_cart_price += item.total_price
         item_dict = dict()
-        item_dict['id'] = item.item.id
+        item_dict['id'] = item.id
         item_dict['name'] = item.item.name
         item_dict['name_slug'] = item.item.name_slug
         item_dict['price'] = item.current_price
         item_dict['total_price'] = item.total_price
+        if item.text:
+            item_dict['item_text'] = 'Подпись: {}'.format(item.text)
+        else:
+            item_dict['item_text'] = 'Без подписи'
         item_dict['number'] = item.number
         item_dict['image'] = item.item.itemimage_set.first().image.url
         return_dict['all_items'].append(item_dict)
@@ -183,6 +226,10 @@ def update_cart(request):
         item_dict['total_price'] = item.total_price
         item_dict['number'] = item.number
         item_dict['discount'] = item.item.discount
+        if item.text:
+            item_dict['item_text'] = 'Подпись: {}'.format(item.text)
+        else:
+            item_dict['item_text'] = 'Без подписи'
 
         item_dict['image'] = item.item.itemimage_set.first().image.url
         return_dict['all_items'].append(item_dict)
@@ -255,6 +302,10 @@ def delete_from_main_cart(request):
         item_dict['total_price'] = item.total_price
         item_dict['number'] = item.number
         item_dict['discount'] = item.item.discount
+        if item.text:
+            item_dict['item_text'] = 'Подпись: {}'.format(item.text)
+        else:
+            item_dict['item_text'] = 'Без подписи'
 
         item_dict['image'] = item.item.itemimage_set.first().image.url
         return_dict['all_items'].append(item_dict)

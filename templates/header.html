@@ -45,13 +45,19 @@
                                                             <a href="{% url 'product' item.item.name_slug %}">
                                                                 <img width="80" height="107" alt="" class="img-responsive" src="{{ item.item.itemimage_set.first.image.url }}">
                                                             </a>
+
                                                         </td>
                                                         <td class="product-name">
                                                             <a href="{% url 'product' item.item.name_slug %}">{{ item.item.name }}</a>
-                                                            <br><span class="amount"><strong>{{ item.number }} X {{ item.item.price }} &#8381; = {{ item.total_price }} &#8381;</strong></span>
+                                                            {% if item.text %}
+                                                            <p id="header_cart_item_text">Подпись: {{ item.text }}</p>
+                                                            {% else %}
+                                                                <p id="header_cart_item_text">Без подписи</p>
+                                                            {% endif %}
+                                                            <span class="amount"><strong>{{ item.number }} X {{ item.item.price }} &#8381; = {{ item.total_price }} &#8381;</strong></span>
                                                         </td>
                                                         <td class="product-actions">
-                                                            <a data-item_id="{{ item.item.id }}" class="remove" onclick="delete_from_cart(this);return false;">
+                                                            <a data-item_id="{{ item.id }}" class="remove" onclick="delete_from_cart(this);return false;">
                                                                 <i class="fa fa-times"></i>
                                                             </a>
                                                         </td>

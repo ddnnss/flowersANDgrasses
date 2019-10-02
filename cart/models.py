@@ -2,6 +2,7 @@ from django.db import models
 from customuser.models import User, Guest
 from item.models import Item
 
+
 class Cart(models.Model):
     client = models.ForeignKey(User, blank=True, null=True, default=None, on_delete=models.CASCADE,
                                verbose_name='Корзина клиента')
@@ -9,6 +10,7 @@ class Cart(models.Model):
                               verbose_name='Корзина гостя')
     item = models.ForeignKey(Item, blank=True, null=True, default=None, on_delete=models.CASCADE,
                               verbose_name='Товар')
+    text = models.TextField('Надпись',default='',null=True,blank=True)
     number = models.IntegerField('Кол-во', blank=True, null=True, default=0)
     current_price = models.IntegerField('Цена за ед.', default=0)
     total_price = models.IntegerField('Общая стоимость', default=0)
@@ -17,9 +19,9 @@ class Cart(models.Model):
 
     def __str__(self):
         if self.client:
-            return 'Товар в корзине клиента : %s ' % self.client.name
+            return 'Товар в корзине клиента : {} | ID: {} '.format(self.client.name,self.id)
         elif self.guest:
-            return 'Товар в корзине гостя : %s ' % self.guest.id
+            return 'Товар в корзине гостя : {} | ID: {} '.format(self.guest.id,self.id)
         else:
             return 'Товар в корзине'
 
