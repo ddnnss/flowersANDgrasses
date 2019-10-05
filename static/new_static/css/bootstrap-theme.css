@@ -3051,12 +3051,12 @@ input[type="button"].btn-block {
 }
 
 .dropdown-backdrop {
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  top: 0;
-  z-index: 990;
+  /*position: fixed;*/
+  /*left: 0;*/
+  /*right: 0;*/
+  /*bottom: 0;*/
+  /*top: 0;*/
+  /*z-index: 990;*/
 }
 
 .pull-right > .dropdown-menu {

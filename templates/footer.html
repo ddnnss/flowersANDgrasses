@@ -1,51 +1,74 @@
 {% load static %}
-	<footer id="footer">
-				<div class="footer-center">
-					<div class="container">
+<footer id="footer">
+    <div class="footer-center">
+        <div class="container">
 
-						<div style="    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;">
-                          <img style="width: 400px" src="{% static 'new_static/img/footer-logo.png' %}" alt="">
+            <div class="footer-wrapper"   >
+                <img class="footer-logo-img"  src="{% static 'new_static/img/footer-logo.png' %}" alt="">
 
 
 
-								<div class="social_block">
-									<ul class="links">
-										<li><a href="#"><em class="fa fa-facebook"></em><span class="unvisible">facebook</span> </a></li>
-										<li><a href="#"><em class="fa fa-twitter"></em><span class="unvisible">twitter</span> </a></li>
-										<li><a href="#"><em class="fa fa-google-plus"></em><span class="unvisible">google</span> </a></li>
-										<li><a href="#"><em class="fa fa-linkedin"></em><span class="unvisible">linkedin</span> </a></li>
-										<li><a href="#"><em class="fa fa-pinterest"></em><span class="unvisible">pinterest</span> </a></li>
-										<li class="last"><a href="#"><em class="fa fa-instagram"></em><span class="unvisible">instagram</span> </a></li>
-									</ul>
+                <div class="social_block">
+                    <ul class="links">
+                        <li><a href="#"><em class="fa fa-facebook"></em><span class="unvisible">facebook</span> </a></li>
+                        <li><a href="#"><em class="fa fa-twitter"></em><span class="unvisible">twitter</span> </a></li>
+                        <li><a href="#"><em class="fa fa-google-plus"></em><span class="unvisible">google</span> </a></li>
+                        <li><a href="#"><em class="fa fa-linkedin"></em><span class="unvisible">linkedin</span> </a></li>
+                        <li><a href="#"><em class="fa fa-pinterest"></em><span class="unvisible">pinterest</span> </a></li>
+                        <li class="last"><a href="#"><em class="fa fa-instagram"></em><span class="unvisible">instagram</span> </a></li>
+                    </ul>
 
-								</div><!-- end social_block -->
+                </div><!-- end social_block -->
 
-                        </div>
+            </div>
 
 
 
 
 
-					</div>
-				</div><!-- end footer-center -->
+        </div>
+    </div><!-- end footer-center -->
 
-				<div style="border: none" class="footer-copyright">
-					<div class="container">
-						<div class="row">
-							<div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 col-sp-12">
-								© 2019 - Flowers And Grasses
-							</div>
-						</div>
-					</div>
-				</div><!-- end footer-copyright -->
-			</footer><!-- end footer -->
-
-
-			<div class="go-up">
-				<a href="#"><i class="fa fa-chevron-up"></i></a>
-			</div><!-- end go-up -->
+    <div style="border: none" class="footer-copyright">
+        <div class="container">
+            <div class="row">
+                <div class="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 col-sp-12">
+                    © 2019 - Flowers And Grasses
+                </div>
+            </div>
+        </div>
+    </div><!-- end footer-copyright -->
+</footer><!-- end footer -->
 
 
+<div class="go-up">
+    <a href="#"><i class="fa fa-chevron-up"></i></a>
+</div><!-- end go-up -->
+
+<div style="display: none" id="off-mainmenu1">
+    <div class="off-mainnav">
+        <div class="off-close">
+            <span class="title">Menu</span>
+            <span class="close-menu"><i class="fa fa-close"></i></span>
+        </div>
+        <ul class="nav navbar-nav megamenu test">
+            <li class="dropdown"><a href='/'>ГЛАВНАЯ </a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
+            <li class="dropdown"><a href='{% url 'catalog' %}'>КАТАЛОГ </a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
+            {#												<li class="dropdown"><a href='#'>БЛОГ </a></li>#}
+            <li class="dropdown"><a href='{% url 'contacts' %}'>КОНТАКТЫ </a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
+            <li class="dropdown"><a href='{% url 'about' %}'>О НАС</a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
+            {% if not request.user.is_authenticated %}
+                <li class="dropdown"><a href='{% url 'login' %}'>ВХОД/РЕГИСТРАЦИЯ</a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
+            {% else %}
+                <li class="dropdown"><a href='{% url 'account' %}'>ЛИЧНЫЙ КАБИНЕТ</a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
+            {% endif %}
+
+
+        </ul>
+    </div></div>
+<script>
+    function toggleMobileMenu() {
+
+        document.getElementById('main_body').classList.toggle("mainmenu-active");
+    }
+</script>

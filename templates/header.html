@@ -8,14 +8,18 @@
                 <div class="col-lg-2 col-md-2 col-sm-5 col-xs-5">
                     <div class="logo">
                         <a href="/" title="">
-                            <img style="width: 300px !important;"  src="{% static 'new_static/img/Logo_simple.png' %}" alt="">
+                            <img  src="{% static 'new_static/img/Logo_simple.png' %}" alt="">
                         </a>
                     </div><!--end logo-->
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-7 col-xs-7">
                     <div class="topheader-navholder">
                         <div class="topheader-navholder-lf">
-
+                            <div id="mobile_menu" class="block-search dropdown-over pull-right">
+                                                            <div data-toggle="dropdown" class="dropdown-title">
+                                                                <a href="javascript:void(0)" onclick="toggleMobileMenu()"><i class="zmdi zmdi-menu"></i></a>
+                                                            </div>
+                            </div>
                             <div id="block-cart" class="block-cart dropdown-over pull-right">
                                 <div data-toggle="dropdown" class="dropdown-title">
                                     <a href="#" title="Shopping cart">
@@ -80,7 +84,7 @@
                                 </div><!-- end dropdown-content -->
                             </div><!-- end blockcart_top -->
                             {% if request.user.is_authenticated %}
-                                <div class="block_group_top dropdown-over pull-right">
+                                <div id="user_icon" class="block_group_top dropdown-over pull-right">
                                     <div data-toggle="dropdown" class="dropdown-title">
                                         <a href="#" title="Group language, currency"><i class="fa fa-user"></i></a>
                                     </div>

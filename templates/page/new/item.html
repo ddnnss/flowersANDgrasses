@@ -74,7 +74,7 @@
                             <p>{{ item.description | safe }}</p>
                         </div><!-- end short_description_block -->
                         <div class="item-to-cart">
-                            <form  action="{% url 'add_to_cart' %}"   method="post"
+                            <form style="margin-bottom: 20px"  action="{% url 'add_to_cart' %}"   method="post"
                                    onsubmit="add_to_cart(this,{{ item.id }});return false;">{% csrf_token %}
 
                                 {% if item.is_present %}
