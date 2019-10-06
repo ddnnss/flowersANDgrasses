@@ -11,11 +11,9 @@ class UserAdmin(DjangoUserAdmin):
 
     fieldsets = (
         (None, {'fields': ('email', 'password', 'used_promo')}),
-        (_('Personal info'), {'fields': ('name', 'family', 'otchestvo', 'country',
+        (_('Personal info'), {'fields': ('name', 'country',
                                          'city', 'post_code', 'phone', 'passport',
                                          'address', 'comment', 'is_allow_email')}),
-        (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
-                                       'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
@@ -24,9 +22,20 @@ class UserAdmin(DjangoUserAdmin):
             'fields': ('email', 'password1', 'password2', 'phone'),
         }),
     )
-    list_display = ('email', 'name', 'family', 'otchestvo', 'phone')
+    list_display = ('email', 'name', 'phone')
 
     ordering = ('email',)
-    search_fields = ('email', 'name', 'family','phone')
+    search_fields = ('email', 'name', 'phone')
 
-admin.site.register(Guest)
+class GuestAdmin(admin.ModelAdmin):
+    list_display = ['email']
+    #list_display = [field.name for field in Item._meta.fields]
+
+    search_fields = ('name_lower', 'article')
+
+    exclude = ['family','otchestvo'] #не отображать на сранице редактирования
+    class Meta:
+        model = Guest
+
+
+admin.site.register(Guest,GuestAdmin)

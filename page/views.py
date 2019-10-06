@@ -243,8 +243,8 @@ def checkout(request):
             s_key = request.session.session_key
             guest = Guest.objects.get(session=s_key)
             name = request.POST.get('name')
-            family = request.POST.get('family')
-            otchestvo = request.POST.get('otchestvo')
+            # family = request.POST.get('family')
+            # otchestvo = request.POST.get('otchestvo')
             email = request.POST.get('email')
             phone = request.POST.get('phone')
             country = request.POST.get('country')
@@ -270,17 +270,17 @@ def checkout(request):
             if request.POST.get('with_register') == 'on':
                 print('With register')
                 password = create_password()
-                user = User.objects.create_user(email=email, name=name, family=family, otchestvo=otchestvo, country=country,
+                user = User.objects.create_user(email=email, name=name, country=country,
                                          city=city, post_code=post_code, phone=phone, address=address, profile_ok=True,
                                          password=password)
-                msg_html = render_to_string('email/register.html', {'login': email, 'password': password})
-                send_mail('Регистрация на сайте LAKSHMI888', None, 'info@lakshmi888.ru', [email],
-                          fail_silently=False, html_message=msg_html)
+                # msg_html = render_to_string('email/register.html', {'login': email, 'password': password})
+                # send_mail('Регистрация на сайте LAKSHMI888', None, 'info@lakshmi888.ru', [email],
+                #           fail_silently=False, html_message=msg_html)
             else:
                 guest.email = email
                 guest.name = name
-                guest.family = family
-                guest.otchestvo = otchestvo
+                # guest.family = family
+                # guest.otchestvo = otchestvo
                 guest.country = country
                 guest.city = city
                 guest.post_code = post_code

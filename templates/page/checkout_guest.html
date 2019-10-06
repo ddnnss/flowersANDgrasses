@@ -30,17 +30,10 @@
                 <div class="row userInfo">
                     <div class="col-xs-12 col-sm-6">
                         <div class="form-group ">
-                            <label >Ваше имя <sup>*</sup> </label>
+                            <label >Ваше Ф.И.О. <sup>*</sup> </label>
                             <input  required="required" name="{{ form.name.name }}" type="text" class="form-control"  placeholder="Ваше имя" value="{% if not guest.name %}{% else %}{{ guest.name }}{% endif %}">
                         </div>
-                       <div class="form-group required">
-                            <label for="InputName">Ваша фамилия <sup>*</sup> </label>
-                            <input  required="required" name="{{ form.family.name }}" type="text" class="form-control"  placeholder="Ваша фамилия" value="{% if not guest.family %}{% else %}{{ guest.family }}{% endif %}">
-                        </div>
-                    <div class="form-group required">
-                            <label for="InputName">Ваше отчество  </label>
-                            <input   name="{{ form.otchestvo.name }}" type="text" class="form-control"  placeholder="Ваше отчество" value="{% if not guest.otchestvo %}{% else %}{{ guest.otchestvo }}{% endif %}">
-                        </div>
+
                         <div class="form-group required">
                             <label for="InputEmail">Ваш E-Mail <sup>*</sup> <span style="color: #f2486e;font-size: 13px;"
                                                                                   id="checkout_email_error"></span>
