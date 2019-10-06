@@ -248,12 +248,17 @@
     display: block;
 
   }
+  #search_block_top{
+    display: none;
+  }
 }
 @media (min-width: 0px) and (max-width: 543px) {
   .checkout_btn{
     position: absolute;
     bottom: -21%;
   }
+
+
   [class~=home-1] [class~=header-main] [class~=dropdown-over] [class~=dropdown-content] {
     right: -64px;
   }

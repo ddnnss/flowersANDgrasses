@@ -48,7 +48,7 @@
 <div style="display: none" id="off-mainmenu1">
     <div class="off-mainnav">
         <div class="off-close">
-            <span class="title">Menu</span>
+            <span class="title">Меню</span>
             <span class="close-menu"><i class="fa fa-close"></i></span>
         </div>
         <ul class="nav navbar-nav megamenu test">
@@ -62,6 +62,16 @@
             {% else %}
                 <li class="dropdown"><a href='{% url 'account' %}'>ЛИЧНЫЙ КАБИНЕТ</a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
             {% endif %}
+            <li class="dropdown">
+                <form id="searchbox" action="{% url 'search' %}" method="get">
+                                        <div class="input-group">
+                                            <input class="search_query form-control" type="text" required="required" id="search_query_top" name="q" placeholder="Что ищем?" value="" autocomplete="off">
+                                            <div class="input-group-btn">
+                                                <button type="submit" class="btn button btn-primary">ПОИСК</button>
+                                            </div>
+                                        </div>
+                                    </form>
+            </li>
 
 
         </ul>
@@ -70,5 +80,8 @@
     function toggleMobileMenu() {
 
         document.getElementById('main_body').classList.toggle("mainmenu-active");
+        document.getElementsByClassName('title')[0].innerHTML='МЕНЮ'
     }
+
+
 </script>
