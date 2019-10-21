@@ -32,13 +32,13 @@
                 <div class="row">
                     {% for category in all_category %}
 
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="category-image">
                                 <a  href="{% url 'category' category.name_slug %}" title=""><img class="img-responsive" src="{{ category.image.url }}" alt=""></a>
-                                <div class="category-image-caption">
+                                <div class="category-image-caption-new">
                                     <a  href="{% url 'category' category.name_slug %}" title="">
-                                        <h5 >{{ category.name }}</h5>
-                                        <span class="category-description">{{ category.short_description }}</span>
+                                        {{ category.name }}
+
                                     </a>
                                 </div>
 
