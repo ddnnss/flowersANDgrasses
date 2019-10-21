@@ -299,6 +299,8 @@
     justify-content: space-evenly;
     /*padding: 10px 0;*/
    line-height: 50px;
+   background: rgba(255, 255, 255, 0.5);
+
 }
 
 .item-button-cart{
