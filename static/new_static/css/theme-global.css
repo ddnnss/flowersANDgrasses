@@ -3151,6 +3151,7 @@ p {
 
 #breadcrumb [class~=ul-breadcrumb] li a {
     color: #fff;
+    text-transform: uppercase;
 }
 
 .content_sortPagiBar {
@@ -3344,6 +3345,7 @@ p {
 #breadcrumb [class~=ul-breadcrumb] li span,
 .pagination > li > a {
     color: #4c4c4c;
+    text-transform: uppercase;
 }
 
 [class~=page-checkout] [class~=checkout-shopingcart] [class~=shop_tablecart] [class~=cart_quantity] [class~=quantity],

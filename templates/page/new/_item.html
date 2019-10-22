@@ -21,19 +21,17 @@
                                                                     data-item_price="{{ item.price }}"
 
                                                                     data-item_image="{{ item.itemimage_set.first.image_small }}"
-                                                                    onclick="quick_add_to_cart(this)"  rel="nofollow" title="В корзину"><i class="zmdi zmdi-shopping-cart"></i> в корзину</a>
+                                                                    onclick="quick_add_to_cart(this)"  rel="nofollow" title="В корзину">В КОРЗИНУ</a>
 
 
                                                                   {% if item.id in wishlist_ids %}
-                                                                <a onclick="return false;" data-placement="left" data-original-title="Add to Wishlist" data-toggle="tooltip" class="addToWishlist item-button-wishlist">
-                                                                    <i class="zmdi zmdi-favorite"></i>
-                                                                в избранном
+                                                                <a onclick="return false;" data-placement="left" data-original-title="Add to Wishlist"
+                                                                   data-toggle="tooltip" class="addToWishlist item-button-wishlist">В ИЗБРАННОМ
                                                                 </a>
                                                             {% else %}
                                                                 <a onclick="wishlist_add({{ item.id }});return false;" data-placement="left" data-original-title="В закладки" data-toggle="tooltip"
                                                                    class="addToWishlist item-button-wishlist">
-                                                                   <i class="zmdi zmdi-favorite-outline"></i>
-                                                                в избранное
+                                                                В ИЗБРАННОЕ
                                                                 </a>
                                                             {% endif %}
 
