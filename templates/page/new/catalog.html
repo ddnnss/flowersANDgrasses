@@ -35,11 +35,12 @@
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <div class="category-image">
                                 <a  href="{% url 'category' category.name_slug %}" title=""><img class="img-responsive" src="{{ category.image.url }}" alt=""></a>
-                                <div class="category-image-caption-new">
-                                    <a  href="{% url 'category' category.name_slug %}" title="">
-                                        {{ category.name }}
-
+                                     <div class="category-image-caption-new-1">
+                                     <div class="category-image-inner">
+                                            <a  href="{% url 'category' category.name_slug %}" title="">
+                                       {{ category.name }}
                                     </a>
+                                     </div>
                                 </div>
 
                             </div>
