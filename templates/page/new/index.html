@@ -44,11 +44,20 @@
                                         <span class="category-description">{{ category.short_description }}</span>
                                     </a>
                                 </div-->
-                                <div class="category-image-caption-new">
-                                     <a  href="{% url 'category' category.name_slug %}" title="">
+{#                                <div class="category-image-caption-new">#}
+{#                                     <a  href="{% url 'category' category.name_slug %}" title="">#}
+{#                                       {{ category.name }}#}
+{##}
+{#                                    </a>#}
+{#                                </div>#}
+                                 <div class="category-image-caption-new-1">
+                                     <div class="category-image-inner">
+                                            <a  href="{% url 'category' category.name_slug %}" title="">
                                        {{ category.name }}
 
                                     </a>
+                                     </div>
+
                                 </div>
 
                             </div>
@@ -178,5 +187,7 @@
 {% endblock %}
 
 {% block js %}
+<script>
 
+</script>
 {% endblock %}

@@ -368,3 +368,29 @@ h4{
   color: #1f1f1f;
   transition: all .5s ease-in;
 }
+
+.category-image-caption-new-1{
+  position: absolute;
+    top: 80px;
+
+    bottom: 80px;
+    left: 70px;
+    right: 70px;
+    border: 1px solid #FFFFFF;
+     box-sizing: border-box;
+  padding: 5px;
+
+}
+.category-image-inner{
+  background: rgba(255, 255, 255, 0.8);
+  height: 100%;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.category-image-inner a{
+  color: #519EA3;
+  font-weight: 600;
+}
+
