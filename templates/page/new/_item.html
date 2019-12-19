@@ -13,8 +13,8 @@
 {#															<span class="label-sale label">Sale</span>#}
 {#															<span class="label-reduction label">-5%</span>#}
                                                         <div class="item-buttons">
-
-                                                                <a class="ajax_add_to_cart_button item-button-cart" href="javascript:void(0)"
+                                                        <div style="    border: 1px solid #ffffff; padding: 3px;">
+                                                            <a class="ajax_add_to_cart_button item-button-cart" href="javascript:void(0)"
                                                                    id="{{ item.id }}_submit"
                                                                     data-item_id="{{ item.id }}"
                                                                     data-item_name="{{ item.name }}"
@@ -22,8 +22,8 @@
 
                                                                     data-item_image="{{ item.itemimage_set.first.image_small }}"
                                                                     onclick="quick_add_to_cart(this)"  rel="nofollow" title="В корзину">В КОРЗИНУ</a>
-
-
+                                                        </div>
+                                                          <div style="    border: 1px solid #ffffff; padding: 3px;">
                                                                   {% if item.id in wishlist_ids %}
                                                                 <a onclick="return false;" data-placement="left" data-original-title="Add to Wishlist"
                                                                    data-toggle="tooltip" class="addToWishlist item-button-wishlist">В ИЗБРАННОМ
@@ -34,6 +34,12 @@
                                                                 В ИЗБРАННОЕ
                                                                 </a>
                                                             {% endif %}
+
+                                                        </div>
+
+
+
+
 
 
 

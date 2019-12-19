@@ -107,7 +107,7 @@
 }
 
 [class~=product-container] [class~=name] a {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 .product-container .label {
@@ -322,7 +322,7 @@
 }
 
 .product-container .name {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 [class~=product-container] [class~=box-buttons] [class~=btn],

@@ -990,7 +990,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 [class~=bannertext] [class~=box-homehtml] [class~=title_block] {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 [class~=block-tag] ul li a {
@@ -2042,7 +2042,7 @@ body {
 
 body,
 [class~=page-checkout] [class~=checkout-shopingcart] tr th {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 #off-mainmenu .dropdown-menu.tiva-active ul li {
@@ -2379,7 +2379,7 @@ p,
 }
 
 [class~=home-1] #main-nav [class~=dropdown-menu] li a {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 [class~=home-3] [class~=tiva-slideshow-wrapper] [class~=tiva-caption] [class~=btn][class~=white] {
@@ -2829,7 +2829,7 @@ p {
 }
 
 p {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 #main-nav [class~=block-subcategories] [class~=menu-title] {
@@ -4629,7 +4629,7 @@ ul {
 }
 
 [class~=home-1] #main-nav > ul > li > a {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 [class~=home-3] [class~=btn-default]:hover {
@@ -4897,7 +4897,7 @@ ol {
 }
 
 #main-nav [class~=dropdown-menu] li a {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 #off-mainmenu [class~=dropdown-menu][class~=tiva-active] {
@@ -5057,7 +5057,7 @@ h1 {
 }
 
 #main-nav > ul > li > a {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 [class~=home-3] #footer:after {
@@ -10818,7 +10818,7 @@ span[class~=jslider][class~=jslider_plastic] [class~=jslider-bg] i[class~=v] {
 }
 
 [class~=multi-color] h4 {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 [class~=sidebar] [class~=block] [class~=list-block] li a {

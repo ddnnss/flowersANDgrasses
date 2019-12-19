@@ -292,11 +292,12 @@
 .item-buttons{
     position: absolute;
     bottom: 0;
-    display: flex;
-    border: 1px solid #dddddd;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5px;
+
     width: 100%;
-    align-items: center;
-    justify-content: space-evenly;
+
     /*padding: 10px 0;*/
    line-height: 50px;
    background: rgba(255, 255, 255, 0.65);
@@ -311,22 +312,14 @@
   position: relative;
   width: 100%;
   cursor: pointer;
+  display: block;
+  background: rgba(255, 255, 255, 0.51);
+  line-height: 36px;
+
 
 }
-.item-button-cart a{
- line-height: 50px;
 
-}
-.item-button-cart:after{
-  position: absolute;
-    content: '';
-    width: 1px;
-    height: 50px;
-    right: 0px;
 
-    background: #dddddd;
-
-}
 
 .item-button-cart:hover{
   background: #B26E6B;

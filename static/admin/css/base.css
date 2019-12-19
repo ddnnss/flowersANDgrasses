@@ -104,8 +104,7 @@ li ul {
 }
 
 li, dt, dd {
-    font-size: 15px;
-    font-weight: bold;
+    font-size: 13px;
     line-height: 20px;
 }
 
@@ -248,8 +247,7 @@ table {
 }
 
 td, th {
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 13px;
     line-height: 16px;
     border-bottom: 1px solid #eee;
     vertical-align: top;
@@ -266,7 +264,7 @@ thead th,
 tfoot td {
     color: #666;
     padding: 5px 10px;
-    font-size: 14px;
+    font-size: 11px;
     background: #fff;
     border: none;
     border-top: 1px solid #eee;
@@ -443,6 +441,8 @@ select {
 }
 
 select[multiple] {
+    /* Allow HTML size attribute to override the height in the rule above. */
+    height: auto;
     min-height: 150px;
 }
 
@@ -829,10 +829,12 @@ table#change-history tbody th {
 
 #header {
     width: auto;
-    height: 40px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 10px 40px;
     background: #417690;
-    line-height: 40px;
     color: #ffc;
     overflow: hidden;
 }

@@ -240,7 +240,7 @@
         padding-top: 3.125pc;
     }
     [class~=blog-detail-full] [class~=quotes] p {
-        font-family: "Open Sans", sans-serif;
+        font-family: "Roboto Condensed", sans-serif;
     }
     [class~=product-container]:hover [class~=product-image-container] img {
         opacity: 1;
