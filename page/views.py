@@ -10,6 +10,7 @@ from customuser.models import User, Guest
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.http import Http404
+from .forms import *
 
 def login(request):
     return render(request, 'page/new/login.html', locals())
@@ -92,6 +93,15 @@ def sitemap(request):
 def contacts(request):
     show_tags = True
     title = 'КОНТАКТНАЯ ИНФОРМАЦИЯ'
+    if request.POST:
+        req = request.POST
+        form = CallbackForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+    else:
+        form = CallbackForm()
+
     return render(request, 'page/new/contacts.html', locals())
 
 

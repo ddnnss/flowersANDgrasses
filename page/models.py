@@ -24,3 +24,18 @@ class Banner(models.Model):
     class Meta:
         verbose_name = "Баннер"
         verbose_name_plural = "Баннеры"
+
+class Callback(models.Model):
+    name = models.CharField('Имя', max_length=255, blank=True)
+    email = models.CharField('Почта', max_length=255, blank=True)
+    company = models.CharField('Компания', max_length=255, blank=True)
+    phone = models.CharField('Телефон', max_length=255, blank=True)
+    message = models.CharField('Сообщение', max_length=255, blank=True)
+    created_at = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Заполнена форма. Дата: {self.created_at}'
+
+    class Meta:
+        verbose_name = "Форма обратной связи"
+        verbose_name_plural = "Формы обратной связи"
