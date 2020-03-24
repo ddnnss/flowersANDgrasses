@@ -1,22 +1,21 @@
 {% load static %}
-<div style="margin-bottom: 40px" class="container main-container headerOffset">
+
    <div id="breadcrumb" class="clearfix">
 				<div class="container">
 					<div class="breadcrumb clearfix">
 						<ul class="ul-breadcrumb">
 							<li><a href="/" title="Home">Главная</a></li>
                             <li><a href="{% url 'show_cart' %}" title="Home">Корзина</a></li>
-							<li><span>Оформление заказа</span></li>
+							<li><span style="color: #fff !important;">Оформление заказа</span></li>
 						</ul>
 
 					</div>
 				</div>
 			</div><!-- end breadcrumb -->
 
-
-    <div class="row ">
-
-        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-xxs-12">
+<div style="margin-bottom: 40px" class="container ">
+        <div class="row ">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-xxs-12">
 
             <h3 class="boxes-title-1"><span>ИНФОРМАЦИЯ О ПОКУПАТЕЛЕ</span></h3>
 
@@ -107,7 +106,7 @@
 </form>
             </div>
             <!--/row end-->
-   <div class="col-lg-3 col-md-3 col-sm-12 rightSidebar col-xs-12 col-xxs-12 ">
+            <div class="col-lg-3 col-md-3 col-sm-12 rightSidebar col-xs-12 col-xxs-12 ">
            <div class="w100 cartMiniTable">
                             <table id="cart-summary" class="std table">
                                 <tbody>
@@ -135,7 +134,6 @@
         </div>
         </div>
 
-        <!--/rightSidebar-->
 
     </div>
     <!--/row-->

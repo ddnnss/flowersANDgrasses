@@ -33,6 +33,7 @@ urlpatterns = [
     path('checkout/', views.checkout, name='checkout'),
     path('catalog/', views.catalog, name='catalog'),
     path('check_email/', views.check_email, name='check_email'),
+    path('dostavka/', views.dostavka, name='dostavka'),
     path('order/<order_code>', views.order, name='order'),
     # path('robots.txt', views.robots, name='robots'),
     # path('sitemap.xml', views.sitemap, name='sitemap')

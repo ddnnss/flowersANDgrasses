@@ -56,7 +56,10 @@
             <li class="dropdown"><a href='{% url 'catalog' %}'>КАТАЛОГ </a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
             {#												<li class="dropdown"><a href='#'>БЛОГ </a></li>#}
             <li class="dropdown"><a href='{% url 'contacts' %}'>КОНТАКТЫ </a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
-            <li class="dropdown"><a href='{% url 'about' %}'>О НАС</a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
+            <li class="dropdown"><a href='#'>О НАС</a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
+            <li class="dropdown"><a href='{% url 'dostavka' %}'>ДОСТАВКА</a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
+
+
             {% if not request.user.is_authenticated %}
                 <li class="dropdown"><a href='{% url 'login' %}'>ВХОД/РЕГИСТРАЦИЯ</a><span class="icon-down"><i class="fa fa-angle-down"></i></span></li>
             {% else %}

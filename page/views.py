@@ -108,7 +108,7 @@ def contacts(request):
 def dostavka(request):
     show_tags = True
     title = 'ИНФОРМАЦИЯ О ДОСТАВКЕ'
-    return render(request, 'page/dostavka.html', locals())
+    return render(request, 'page/new/dostavka.html', locals())
 
 
 def new(request):
