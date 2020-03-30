@@ -352,3 +352,18 @@
 	-webkit-animation-duration: 2.2s;
 	animation-duration: 2.2s;
 }
+.button{
+	background: #ffffff;
+	opacity: .75;
+	transition: opacity .2s linear;
+	box-sizing: border-box;
+
+}
+.btn:hover{
+	background: #ffffff !important;
+	opacity: 1 !important;
+	color: #366D73 !important;
+
+	box-sizing: border-box;
+
+}

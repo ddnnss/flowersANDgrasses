@@ -5,14 +5,14 @@
     <div class="header-main">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-5 col-xs-5">
+                <div class="col-lg-3 col-md-2 col-sm-5 col-xs-5">
                     <div class="logo">
                         <a href="/" title="">
                             <img  src="{% static 'new_static/img/Logo_simple.png' %}" alt="">
                         </a>
                     </div><!--end logo-->
                 </div>
-                <div class="col-lg-10 col-md-10 col-sm-7 col-xs-7">
+                <div class="col-lg-9 col-md-10 col-sm-7 col-xs-7">
                     <div class="topheader-navholder">
                         <div class="topheader-navholder-lf">
                             <div id="mobile_menu" class="block-search dropdown-over pull-right">
@@ -111,7 +111,12 @@
                                     </div>
                                 </div>
                             {% endif %}
-                            <div id="search_block_top" class="block-search dropdown-over pull-right">
+                        <div  class="block-search dropdown-over pull-left">
+                                <div class="dropdown-title">
+                                    <a href="https://api.whatsapp.com/send?phone=79035023712" title="whatsapp" target="_blank"><i class="zmdi zmdi-whatsapp"></i></a>
+                                </div>
+                        </div>
+                            <div style="margin-left: 0px;" id="search_block_top" class="block-search dropdown-over pull-right">
                                 <div data-toggle="dropdown" class="dropdown-title">
                                     <a href="#" title="Search"><i class="zmdi zmdi-search"></i></a>
                                 </div>
